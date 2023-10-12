@@ -1,0 +1,3 @@
+<input (keyup)="onkeyUp($event.target.value)" type="text" placeholder="Enter Rename Folder Name"
+    value="{{ folder_name }}" [(ngModel)]="textInput" maxlength="25" [class.limit-reached]="isInvalid" />
+<p class="limit-reached-notice">{{ getRemainingCharacters() }} characters remaining</p>

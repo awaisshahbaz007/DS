@@ -1,0 +1,221 @@
+.file-drop-area:not(.dropFileDesign) {
+  border: 0px;
+  border-radius: 8px;
+  position: relative;
+  width: 135px;
+  margin-top: 0px;
+  padding: 21px 20px 21px;
+  transition: 0.2s;
+  background: #272D34;
+  border: 1px solid #272D34;
+  transition: all ease .1s;
+  cursor: pointer;
+  &:after{
+      cursor: pointer;
+      content: "Upload";
+      position: absolute;
+      cursor: pointer;
+      color: #FFFFFF;
+      font-size: 14px;
+      right: 34px;
+  }
+
+}
+.file-drop-area{
+  &.dropFileDesign{
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .drop_file_button {
+        text-align: center;
+        h4{
+          margin: 28px 0px 0px;
+          color: #000000;
+          font-size: 24px;
+          span{
+            display: block;
+            font-size: 16px;
+            margin: 4px 0px 0px;
+          }
+        }
+      }
+  }
+}
+.fileinputcustom-file-input-label{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 11;
+}
+.file-input {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 11;
+}
+.uploaded_popup {
+  transition: all ease .3s;
+  position: fixed;
+  right: 0px;
+  bottom: 0;
+  width: 320px;
+  background: #fff;
+  border: 1px solid #0000004A;
+  border-bottom: 0px;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  padding: 16px 18px 6px;
+  font-size: 14px;
+  color: #000;
+  font-weight: 400;
+  z-index: 1111111;
+  &.close_div{
+    .uploaded_status, .uploaded_list{
+      display: none;
+    }
+    .uploaded_p_header{
+      padding-bottom: 8px;
+    }
+    .up_down_btn{
+      img{
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .uploaded_p_header{
+    display: flex;
+    align-items: center;
+    padding: 0px 0px 15px;
+    transition: all ease .3s;
+    span{
+      width: calc(100% - 100px);
+    }
+    .btn_wrap{
+      margin-left: auto;
+      button{
+        border:0px;
+        background: transparent;
+        font-size: 14px;
+        &.up_down_btn{
+          margin-right: 8px;
+          transition: all ease .3s;
+          img{
+            max-width: 16px;
+          }
+        }
+      }
+    }
+  }
+  .uploaded_status{
+    display: flex;
+    align-items: center;
+    background: rgba(239, 239, 240,.37);
+    padding: 4px 18px;
+    width: calc(100% + 36px);
+    margin-left: -18px;
+    margin-right: -18px;
+    height: auto;
+    visibility: visible;
+    opacity: 1;
+    .cancel{
+      margin-left: auto;
+      cursor: pointer;
+    }
+  }
+  .uploaded_list{
+    padding: 4px 0px 0px;
+    max-height: 300px;
+    overflow-y: auto;
+    & > div{
+      padding: 10px 0px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      text-align:left;
+      font-family: 'Roboto', sans-serif;
+      span{
+        margin-right: 5px;
+        width: calc(100% - 23px);
+      }
+      .progress_bar{
+        width: calc(100% - 18px);
+        order: -1;
+
+      }
+
+      .progress_status{
+        width: 18px;
+        img{
+          width: 18px;
+        }
+      }
+    }
+  }
+}
+
+.file-drop-area:not(.dropFileDesign) {
+
+  display: flex;
+  align-items: center;
+  &::before {
+    content: "";
+    background: url('./../../../../assets/images/upload_d.png');
+    background-position: center;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 27px;
+    background-repeat: no-repeat;
+  }
+}
+@media(max-width:992px){
+  .uploaded_popup{
+    width: 280px;
+  }
+}
+@media(max-width:768px){
+  .file-drop-area:not(.dropFileDesign){
+    width: 100px;
+  }
+  .file-drop-area:not(.dropFileDesign) {
+    &::before{
+      display: none;
+    }
+    &:after{
+      right: auto;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      top: 50%;
+    }
+  }
+}
+@media(max-width:576px) {
+  .file-drop-area:not(.dropFileDesign) {
+    background: transparent;
+    border: none;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    &::after{
+      content: "";
+      background: url('./../../../../assets/images/upload.png');
+      background-position: center;
+      background-size: 30px;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+}

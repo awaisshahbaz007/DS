@@ -1,0 +1,59 @@
+<section class="content module_wrap">
+    <div class="content-block">
+        <app-wrapper>
+            <!-- PAGE WRAP -->
+            <div class="wrapper">
+                <div class="schedule_head">
+
+                    <div class="schedule_name">
+                        <a class="back_to_schedule" routerLink="/admin/dashboard/schedules">
+                            <img src="assets/images/playlist/left_arrow_02.png">
+                        </a>
+                        <div class="input_text">
+                            <span class="scheduleName">{{ schedule_name }}</span>
+                            <input type="text" name="edit_schedule_name" id="edit_schedule_name">
+                            <button class="edit_schedule_btn" (click)="onEditSchedule()">
+                                <img src="assets/images/playlist/feather-edit.png">
+                            </button>
+                            <button class="update_schedule_name" (click)="onUpdateScheduleName()">
+                                <img src="assets/images/done_icon.png">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="wrap_element">
+                        <div class="selected_screens">
+                            <ul>
+                                <li *ngFor="let screen of SelectedScreens; let i = index">
+                                    {{screen.name}}
+                                    <span class="delete_button" (click)="onScreenDelete(i)">x</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <app-button [data]="{
+                                  ButtonLabel: 'Save',
+                                  buttonDisabled: true,
+                                  type: 'outline'
+                              }" (click)="clickSaveSchedule()"></app-button>
+                        <app-button [data]="{
+                                ButtonLabel: 'Add Screens',
+                                buttonDisabled: true,
+                                type: 'bg_color'
+                            }" (click)="onAddScreens()"></app-button>
+
+                    </div>
+                </div>
+                <div class="calendar_wrap">
+                    <mat-card class="calendar-card" [ngClass]="isCollapsed ? '' : 'hide'">
+                        <mat-calendar [(selected)]="selectedDate"
+                            (selectedChange)="onDateSelectionChange($event)"></mat-calendar>
+                        <div class="sidebar_collapse" *ngIf="isMobileScreenSize" (click)="toggleLayoutSidebar()">
+                            <img src="assets/images/datatable/arrow_left.png">
+                        </div>
+                    </mat-card>
+                    <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+                </div>
+            </div>
+            <!-- PAGE WRAP END -->
+        </app-wrapper>
+    </div>
+</section>

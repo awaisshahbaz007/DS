@@ -1,0 +1,25 @@
+<mat-form-field>
+	<input matInput (focus)="onFocus($event)" [(ngModel)]="search_value" (focusout)="onFocusOut($event)"
+		(keyup)="applyFilter($event)" placeholder="{{ search_placeholder_text }}" #input>
+
+	<div class="recent_search">
+
+		<ul>
+			<li *ngFor="let search_element of search_list">
+				<a>
+					<button (click)="SelectSearchItem(search_element)">
+						<div class="search_name">
+							{{ helperService.textTransform(search_element.name) }}
+						</div>
+						<span>
+							Select
+						</span> <img class="arrsearch" src="assets/images/enterarrow.png"> <img
+							src="{{ search_element.type === 'FOLDER' ? 'assets/images/datatable/folder_ICON.png' : search_element.thumbLink }}">
+					</button>
+				</a>
+			</li>
+
+			<li *ngIf="no_result_li" class="text-align-center">No Result</li>
+		</ul>
+	</div>
+</mat-form-field>

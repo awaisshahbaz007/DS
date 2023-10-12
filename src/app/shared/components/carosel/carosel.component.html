@@ -1,0 +1,16 @@
+<div class="coursel_border">
+ 
+    <ngx-slick-carousel
+  class="carousel"
+  #slickModal="slick-carousel"
+  [config]="slideConfig"
+  (init)="slickInit($event)"
+  (breakpoint)="breakpoint($event)"
+  (afterChange)="afterChange($event)"
+  (beforeChange)="beforeChange($event)"
+>
+  <div ngxSlickItem *ngFor="let slide of imageArray" class="slide">
+    <img class="carosel_img" src="{{ slide.img }}" alt="" width="100%" />
+  </div>
+</ngx-slick-carousel>
+  </div>

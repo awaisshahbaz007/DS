@@ -1,0 +1,202 @@
+<section class="content module_wrap">
+    <div class="content-block">
+        <app-wrapper>
+
+            <div class="new_play_list">
+
+                <!-- PAGE WRAP -->
+                <div class="page_wrap">
+
+                    <div class="new_paylist_wrap">
+                        <div class="new_paylist_head">
+
+                            <div class="playlist_name">
+                                <a class="back_to_playlist" routerLink="/admin/dashboard/playlist">
+                                    <img src="assets/images/playlist/left_arrow_02.png">
+                                </a>
+                                <div class="input_text">
+                                    <span class="playlistName">{{ playlist_name }}</span>
+                                    <input type="text" name="edit_playlist_name" id="edit_playlist_name">
+                                    <button class="edit_playlist_btn" (click)="onClickEditPlaylistName()">
+                                        <img src="assets/images/playlist/feather-edit.png">
+                                    </button>
+                                    <button class="update_playlist_name" (click)="onUpdatePlaylistName()">
+                                        <img src="assets/images/done_icon.png">
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="right_bar">
+                                <div class="total_duration">Total Duration: {{ playlist_duration_text }}</div>
+                                <div class="dropdown_wrap">
+                                    <button class="dropdown_btn" mat-icon-button [matMenuTriggerFor]="zone_dropdown">
+                                        {{ selected_zone_name }}
+                                    </button>
+                                    <mat-menu #zone_dropdown="matMenu" class="zone_dropdown min-dropdown">
+                                        <ng-container *ngFor="let zone of all_zones">
+                                            <button mat-menu-item (click)="SelectZone( zone.zone_id )">{{ zone.zone_name
+                                                }}</button>
+                                        </ng-container>
+                                    </mat-menu>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="slots-container" cdkDropListGroup>
+                            <div class="empty_slots_wrap">
+                                <div class="empty_slots_boxes" [ngClass]="{ 'stuck': isStuck }">
+                                    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel"
+                                        [config]="slideConfig">
+                                        <div class="empty-slot-box" ngxSlickItem cdkDropList
+                                            *ngFor="let slot_box of playlist_content_data; let i = index"
+                                            id="slot_box_{{ i }}" (cdkDropListDropped)="onDrop($event, i)">
+                                            <div class="empty-slot" [cdkDropListData]="slot_box"
+                                                *ngFor="let item of slot_box">
+                                                <div class="image_wrap">
+                                                    <img [src]="item.thumbLink" alt="Image">
+                                                    <div class="delete">
+                                                        <a href="#" (click)="DeleteContent($event, i)">
+                                                            <img src="assets/images/delete.png">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="increament_decreament">
+                                                    <button (click)="decrementTime($event, i)" class="decreament">
+                                                        <img src="assets/images/playlist/minus_Line.svg">
+                                                    </button>
+                                                    <input type="number" name="counter" value="{{ item.duration }}">
+                                                    <button (click)="incrementTime($event, i)" class="increament">
+                                                        <img src="assets/images/playlist/ionic-md-add.svg">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ngx-slick-carousel>
+
+                                    <div class="empty-slot-box add_more_slots" (click)="addMorePlayListSlotBox($event)">
+                                        <img src="assets/images/playlist/ionic-md-add.svg">
+                                        <span>Add More Slots</span>
+                                    </div>
+                                </div>
+
+                                <div class="transition_filter">
+                                    <div class="dropdown_container">
+                                        <label for="#">Transition Type</label>
+                                        <div class="dropdown_wrap">
+                                            <button class="dropdown_btn" mat-icon-button
+                                                [matMenuTriggerFor]="trans_type_dropdown">
+                                                {{ transition_type }}
+                                            </button>
+                                            <mat-menu #trans_type_dropdown="matMenu"
+                                                class="trans_type_dropdown min-dropdown">
+                                                <button mat-menu-item
+                                                    (click)="SelectTransitionType('Fade')">Fade</button>
+                                                <button mat-menu-item
+                                                    (click)="SelectTransitionType('Ease')">Ease</button>
+                                                <button mat-menu-item
+                                                    (click)="SelectTransitionType('Linear')">Linear</button>
+                                            </mat-menu>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown_container">
+                                        <label for="#">Transition Speed</label>
+                                        <div class="dropdown_wrap">
+                                            <button class="dropdown_btn" mat-icon-button
+                                                [matMenuTriggerFor]="trans_speed_dropdown">
+                                                {{ transition_speed }}
+                                            </button>
+                                            <mat-menu #trans_speed_dropdown="matMenu"
+                                                class="trans_speed_dropdown min-dropdown">
+                                                <button mat-menu-item
+                                                    (click)="SelectTransitionSpeed('Slow')">Slow</button>
+                                                <button mat-menu-item
+                                                    (click)="SelectTransitionSpeed('Medium')">Medium</button>
+                                                <button mat-menu-item
+                                                    (click)="SelectTransitionSpeed('Fast')">Fast</button>
+                                            </mat-menu>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="play_list_slots recent_items">
+                                <div class="gallery_filter_list">
+                                    <ul>
+                                        <li><a class="{{ selected_list_type == 'IMAGE' ? 'active' : '' }}"
+                                                (click)="SelectListType('IMAGE')">Images</a></li>
+                                        <li><a class="{{ selected_list_type == 'VIDEO' ? 'active' : '' }}"
+                                                (click)="SelectListType('VIDEO')">Videos</a></li>
+                                        <li><a class="{{ selected_list_type == 'APP' ? 'active' : '' }}"
+                                                (click)="SelectListType('APP')">Apps</a></li>
+
+                                    </ul>
+                                    <div class="search_form">
+                                        <input type="text" name="search" placeholder="Search Image"
+                                            (keyup)="applySearchFilter($event)" [(ngModel)]="search_value" #input />
+                                    </div>
+                                </div>
+
+                                <ul *ngIf="!showComingSoonDiv" class="slot-box recent_list mobile_recent_list"
+                                    [cdkDropListData]="content_data_to_select" cdkDropList
+                                    (cdkDropListDropped)="onDrop($event, 'slot-box')">
+                                    <li class="slot" *ngFor="let content of content_data_to_select" cdkDrag>
+                                        <div>
+                                            <div class="image_wrap">
+                                                <img *ngIf="content.contentType === 'IMAGE'" [src]="content.thumbLink"
+                                                    alt="Image">
+                                                <div *ngIf="content.contentType === 'VIDEO'" class="video_taginner">
+                                                    <img *ngIf="content.contentType === 'VIDEO'"
+                                                        [src]="content.thumbLink" class="video_tagimg" alt="Image">
+                                                </div>
+                                            </div>
+                                            <h3>{{ helperService.textTransform(
+                                                helperService.nameFromData(content.name), 9) }}</h3>
+
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div *ngIf="showComingSoonDiv">
+                                    <div class="comingsoondiv">
+                                        <h1 class="heading_com">COMING SOON</h1>
+                                        <hr class="w3-border-white w3-animate-left" style="margin:auto;width:50%">
+                                        <p class="">This page is currently under construction</p>
+                                        <h1 class="">🚧🚧🚧🚧</h1>
+                                    </div>
+                                </div>
+
+                                <ng-container *ngIf="!showComingSoonDiv">
+                                    <app-paginator [totalItems]="pagination.totalItems" [pageSize]="pagination.pageSize"
+                                        [pageSizeOptions]="pagination.pageSizeOptions"
+                                        (pageChange)="pageChangeEvent($event)">
+                                    </app-paginator>
+                                </ng-container>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- PAGE WRAP END -->
+
+                <div class="right_layout" [ngClass]="isCollapsed ? '' : 'hide'">
+                    <div (click)="toggleLayoutSidebar()" class="sidebar_collapse">
+                        <img src="assets/images/datatable/arrow_left.png">
+                    </div>
+                    <div>
+                        <h5>Layout</h5>
+                        <div class="current_layout {{ selected_layout_name }}">
+                            <ng-container *ngFor="let zone of all_zones">
+                                <span class="{{ zone.zone_id == selected_zone_id ? 'active' : '' }}"
+                                    (click)="SelectZone( zone.zone_id )">{{ zone.zone_name }}</span>
+                            </ng-container>
+                        </div>
+                        <a class="change_layout" routerLink="/admin/dashboard/playlist/layout">Change Layout</a>
+                    </div>
+                </div>
+
+            </div>
+        </app-wrapper>
+    </div>
+</section>

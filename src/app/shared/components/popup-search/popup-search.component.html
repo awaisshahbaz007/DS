@@ -1,0 +1,26 @@
+<mat-form-field>
+	<input matInput (focus)="onFocus($event)" [(ngModel)]="popup_search_value"
+		(keyup)="applyFilter($event)" placeholder="{{ popup_search_placeholder_text }}"  #input>
+
+    <div class="searchscreenlis" *ngIf="isSearchResultsVisible" >
+        <app-table [data]="searchScreenResults" [showCheckboxes]="true" [showmainAction]="false" [columns]="dataScreentableColumns"
+          [showTableActions]="false"></app-table>
+    </div>
+
+    <div class="searchplaylist searchscreenlis" *ngIf="isSearchplaylistResults">
+      <table class="custom-tableplaylist custom-tableplaylistsearch">
+        <tbody>
+          <tr *ngFor="let playlist of searchPlaylistResults" (click)="selectPlaylist(playlist)">
+            <td>
+              <mat-radio-button (click)="selectPlaylist(playlist)"></mat-radio-button>
+            </td>
+            <td class="playistname">{{ playlist.name }}</td>
+            <td class="dateplaylist">{{ playlist.updatedDate }}</td>
+            <td class="durationplaylist">{{ playlist.duration }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+</mat-form-field>

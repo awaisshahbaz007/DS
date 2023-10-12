@@ -1,0 +1,47 @@
+<section class="content module_wrap">
+    <div class="content-block">
+        <div class="page_wrap">
+
+            <div class="orientation_screen">
+                <div class="left">
+                    <h5>Your screen is successfully paired!</h5>
+
+                    <div class="screen_name">
+                        <div class="input_text">
+                            <span class="screenName">{{ screen_name }}</span>
+                            <input type="text" name="edit_screen_name" id="edit_screen_name">
+                            <button class="edit_screen_btn" (click)="onEditscreen()">
+                                <img src="assets/images/playlist/feather-edit.png">
+                            </button>
+                            <button class="update_screen_name" (click)="onUpdatescreenName()">
+                                <img src="assets/images/done_icon.png">
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="select_orientation form_control">
+                        <label>Select your screen orientation.</label>
+                        <mat-radio-group aria-label="Select an option" [(ngModel)]="screen_orientation" (change)="onOrientChanged()">
+                            <mat-radio-button checked value="horizontal">Horizontal</mat-radio-button>
+                            <mat-radio-button  value="vertical">Vertical</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                    <div class="form_control location">
+                        <input required type="text" placeholder="Location Name" name="location" [value]="screen_location_name" (keyup)="onInputChange($event.target.value)" />
+                    </div>
+
+                </div>
+                <div class="right horizontal" [ngClass]="{'right': true, 'horizontal': isHorizontalClassPresent()}">
+                    <div>
+                        <span>{{ isHorizontalClassPresent() ? '1920x1080' : '1080x1920' }}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div *ngIf="showLoader"  class="loader-overlay">
+      <div class="loader"></div>
+    </div>
+</section>

@@ -1,0 +1,5 @@
+<div class="move_to_folder">
+    <mat-radio-group aria-label="Select an option" [(ngModel)]="selected_Folder_option" (change)="onFolderOptionSelected($event)">
+        <mat-radio-button *ngFor="let folder of folder_list" [value]="folder.id">{{ folder.name }}</mat-radio-button>
+    </mat-radio-group>
+</div>

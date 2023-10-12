@@ -1,0 +1,47 @@
+<div class="file-drop-area" [ngClass]="dropFileDesign ? 'dropFileDesign' : ''" *ngIf="headerFileDesign">
+
+	<input class="file-input" type="file" title="" multiple (change)="onFileChange($event)"
+		accept="{{ allowedFormatsHTML }}" #fileUploadInput>
+
+	<div class="drop_file_button" *ngIf="dropFileDesign">
+		<img src="assets/images/file.png">
+		<h4>Drop file here <span>or use the "Upload" button.</span></h4>
+	</div>
+</div>
+
+<div *ngIf="upload_started" class="uploaded_popup">
+	<div class="uploaded_p_header">
+		<span>{{ upload_text }}</span>
+		<div class="btn_wrap">
+			<button class="up_down_btn" (click)="onminmize()">
+				<img src="assets/images/up_down.png">
+			</button>
+			<button class="close_btn" (click)="closeUploadPopup()">
+				<img src="assets/images/close_popup.png">
+			</button>
+		</div>
+	</div>
+
+	<div class="uploaded_status">
+		<div class="cancel" *ngIf="isUploading" (click)="onCancelUpload()">Cancel</div>
+	</div>
+
+	<div class="uploaded_list">
+		<div *ngFor="let file of files_with_status">
+			<span>{{ file.name + " (" + file.status_percentage + "%)" }}</span>
+
+			<span *ngIf="file.upload_status == 'In Progress'" class="progress_bar">
+				<mat-progress-bar mode="determinate" value="{{file.status_percentage}}"
+					class="custom_progress_bar"></mat-progress-bar>
+			</span>
+
+			<div *ngIf="file.upload_status == 'Uploaded'" class="progress_status">
+				<img src="assets/images/done_icon.svg">
+			</div>
+
+			<div *ngIf="file.upload_status == 'Failed'" class="progress_status">
+				<img src="assets/images/failed_icon.svg">
+			</div>
+		</div>
+	</div>
+</div>

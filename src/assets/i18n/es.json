@@ -1,0 +1,38 @@
+{
+  "MENUITEMS": {
+    "SIDEBAR": {
+      "content_mang": "Content Management",
+      "dashboard": "Dashboard",
+      "contents": "Contents",
+      "playlists": "Playlists",
+      "scheduling": "Scheduling",
+      "personalization": "Personalization",
+      "upselling": "Upselling",
+      "customer_experince": "Customer Experince",
+      "setting":"Setting",
+      "location":"Location",
+      "users":"Users",
+      "devices":"Devices",
+      "order_devices":"Order Devices",
+      "subscription":"Subscription"
+    }
+  },
+  "LOGIN": {
+    "welcome": "Welcome",
+    "Welcome_Please_enter_your_details": "Welcome! Please enter your details",
+    "contents": "Contents",
+    "playlists": "Playlists",
+    "scheduling": "Scheduling",
+    "personalization": "Personalization",
+    "upselling": "Upselling",
+    "customer_experince": "Customer Experince",
+    "setting":"Setting",
+    "location":"Location",
+    "users":"Users",
+    "devices":"Devices",
+    "order_devices":"Order Devices",
+    "subscription":"Subscription"
+  }
+  
+  
+}

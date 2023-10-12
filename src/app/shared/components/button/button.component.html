@@ -1,0 +1,47 @@
+<div *ngIf="data.type === 'primary'">
+    <button mat-raised-button class="auth-form-btn btn_clr min_button button_ht custom_button"
+        [disabled]="data.buttonDisabled" type="submit" (click)="onSubmit()">
+        {{data.ButtonLabel}}
+    </button>
+</div>
+
+
+<div *ngIf="data.type === 'google_login'">
+    <button mat-stroked-button class="auth-form-btn min_button button_ht" type="submit">
+        <div class="flex">
+            <img class="g-logo"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/157px-Google_%22G%22_Logo.svg.png"
+                alt="Google Logo">
+            <div class="g-text">{{data.ButtonLabel}} with Google</div>
+        </div>
+    </button>
+</div>
+
+<div *ngIf="data.type === 'outline'">
+    <button mat-stroked-button class="mat-focus-indicator min_button button_ht custom_button mat-button mat-button-base"
+        type="submit">
+        {{data.ButtonLabel}}
+    </button>
+</div>
+
+<div *ngIf="data.type === 'bg_color'">
+    <button mat-stroked-button
+        class="mat-focus-indicator min_button button_ht custom_button mat-button mat-button-base bg_color"
+        [disabled]="!data.buttonDisabled " type="submit">
+        {{data.ButtonLabel}}
+    </button>
+</div>
+
+<div *ngIf="data.type === 'canva'">
+    <button mat-stroked-button
+        class="mat-focus-indicator canva min_button button_ht custom_button mat-button mat-button-base" type="submit">
+        {{data.ButtonLabel}}
+    </button>
+</div>
+
+<div *ngIf="data.type === 'warn'">
+    <button mat-raised-button color="warn" class="auth-form-btn wanr_btn min_button button_ht" type="submit"
+        (click)="onSubmit()">
+        {{data.ButtonLabel}}
+    </button>
+</div>

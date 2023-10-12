@@ -1,0 +1,23 @@
+<section class="content module_wrap">
+  <div class="content-block">
+    <app-wrapper>
+      <div class="heading_wrap">
+        <app-title-bar [data]="{title: 'Schedules View'}"></app-title-bar>
+      </div>
+      <!-- PAGE WRAP -->
+      <div class="wrapper">
+        <div class="calendar_wrap">
+          <mat-card class="calendar-card" [ngClass]="isCollapsed ? '' : 'hide'">
+            <mat-calendar [(selected)]="selectedDate" (selectedChange)="onDateSelectionChange($event)"></mat-calendar>
+            <div class="sidebar_collapse" *ngIf="isMobileScreenSize" (click)="toggleLayoutSidebar()">
+              <img src="assets/images/datatable/arrow_left.png">
+            </div>
+          </mat-card>
+          <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+        </div>
+      </div>
+      <!-- PAGE WRAP END -->
+
+    </app-wrapper>
+  </div>
+</section>

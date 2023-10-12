@@ -1,0 +1,120 @@
+.pair_code_wrap{
+    padding: 38px 0px 0px;
+    .close_popup{
+        text-align: right;
+        margin: 0px 0px 70px;
+    }
+    .pair_code_popup{
+        max-width: 900px;
+        margin: 0 auto;
+        border-radius: 6px;
+        background: #000;
+        padding: 160px 150px 150px;
+        text-align: center;
+        h4{
+            font-size: 24px;
+            color: #fff;
+            font-weight: 300;
+            margin: 0px 0px 0px;
+            opacity: .8;
+        }
+        .form_control{
+            margin: 35px 0px 34px;
+            input{
+                background: none;
+                border: 0px;
+                border-bottom: 1px solid #fff;
+                width: 100%;
+                font-size: 90px !important;
+                font-weight: 600;
+                color: #ffff;
+                line-height: 80px;
+                text-align: center;
+                text-transform: uppercase;
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+                &[type=number] {
+                    -moz-appearance:textfield;
+                }
+            }
+        }
+        p{
+            font-size: 20px;
+            color: #fff;
+            font-weight: 400;
+            a{
+                font-size: 20px !important;
+                color: #fff;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+@media(max-width:1500px){
+    .pair_code_wrap {
+        .pair_code_popup{
+            max-width: 800px;
+            padding: 120px 120px 110px;
+            text-align: center;
+            .form_control {
+                input{
+                    font-size: 80px !important;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:900px){
+    .pair_code_wrap {
+        .pair_code_popup{
+            padding: 80px 80px 70px;
+            h4{
+                font-size: 20px;
+            }
+            p{
+                font-size: 18px;
+                a{
+                    font-size: 18px !important;
+                }
+            }
+            .form_control {
+                input{
+                    font-size: 70px !important;
+                }
+            }
+        }
+        .close_popup{
+            text-align: center;
+            margin: 0px 0px 30px;
+        }
+    }
+}
+
+@media(max-width:768px){
+    .pair_code_wrap {
+        .pair_code_popup{
+            padding: 58px 25px 45px;
+            p{
+                font-size: 16px;
+                a{
+                    font-size: 16px !important;
+                }
+            }
+            .form_control {
+                margin: 25px 0px 20px;
+                input{
+                    font-size: 60px !important;
+                }
+            }
+        }
+        .close_popup{
+            text-align: center;
+            margin: 0px 0px 30px;
+        }
+    }
+}

@@ -1,0 +1,40 @@
+<section class="content module_wrap">
+  <div class="content-block">
+    <app-wrapper>
+
+      <!-- PAGE WRAP -->
+      <div class="page_wrap" style="display: block;">
+
+        <!-- HEADER -->
+        <app-title-bar [data]="{
+                title: 'Contents',
+                button_name: 'Add Folder'
+              }" (buttonSubmit)="onClickAddFolderBtn()"></app-title-bar>
+        <!-- HEADER END -->
+
+        <!-- RECENT ITEMS -->
+        <app-recent-items [dataArray]="recent_item"></app-recent-items>
+        <!-- RECENT ITEMS END -->
+
+        <!-- CUSTOM DATA TABLE -->
+        <div class="custom_datatable">
+          <app-table [data]="datatableRecord" [showCheckboxes]="true" [showmainAction]="true"
+            [columns]="datatableColumns" [actions]="datatableActions"
+            [checkAllDropDownAction]="check_all_drop_down_actions" (send_list_type)="receiveListType($event)"
+            (send_action_type)="receiveActionType($event)" (send_selected_row)="receiveSelectedRow($event)"
+            (datatable_operation)="receiveDatatableOperation($event)"></app-table>
+
+          <app-paginator *ngIf="showPagination" [totalItems]="pagination.totalItems" [pageSize]="pagination.pageSize"
+            [pageSizeOptions]="pagination.pageSizeOptions" (pageChange)="pageChangeEvent($event)">
+          </app-paginator>
+        </div>
+      </div>
+
+      <!-- PAGE WRAP END -->
+      <div class="page_wrap" style="display: none;">
+        <app-folder-data></app-folder-data>
+      </div>
+
+    </app-wrapper>
+  </div>
+</section>

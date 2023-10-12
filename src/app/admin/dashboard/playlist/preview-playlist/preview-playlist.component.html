@@ -1,0 +1,32 @@
+<div class="popup_preview">
+  <div class="current_layout {{ data.selected_layout }}">
+    <ng-container *ngFor="let zone of data.zonelist">
+      <div class="{{ zone.zone_id == selected_zone_id ? 'active' : '' }}" (click)="SelectZone( zone.zone_id )">
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slickConfig">
+
+          <div class="items" ngxSlickItem>
+            <img src="assets/images/image-gallery/slide01.jpg" alt="">
+          </div>
+          <div class="items" ngxSlickItem>
+            <img src="assets/images/image-gallery/mob_banner_01.png" alt="">
+          </div>
+          <div class="items" ngxSlickItem>
+            <img src="assets/images/image-gallery/slide02.jpg" alt="">
+          </div>
+          <div class="items" ngxSlickItem>
+            <img src="assets/images/image-gallery/slide03.jpg" alt="">
+          </div>
+          <div class="items" ngxSlickItem>
+            <video width="100%" height="100%" autoplay>
+              <source src="assets/images/image-gallery/dumvid.mp4" type="video/mp4" preload="auto" controls>
+            </video>
+          </div>
+          <div class="items" ngxSlickItem>
+            <img src="assets/images/image-gallery/slide04.jpg" alt="">
+          </div>
+
+        </ngx-slick-carousel>
+      </div>
+    </ng-container>
+  </div>
+</div>

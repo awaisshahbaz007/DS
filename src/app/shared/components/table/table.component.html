@@ -1,0 +1,217 @@
+<div *ngIf="showmainAction" class="heading_action">
+	<h4 *ngIF="showTableHeading" class="sub_heading">{{ selected_type }}</h4>
+	<div class="action_wrap">
+		<div *ngIf="showActionbtn" class="dropdown_wrap">
+			<button class="dropdown_btn" mat-icon-button [matMenuTriggerFor]="action_menu">
+				Action
+			</button>
+			<mat-menu #action_menu="matMenu" class="action_menu">
+				<button mat-menu-item *ngFor="let dropDownAction of checkAllDropDownAction" (click)="bulkAction(dropDownAction.title)">{{ dropDownAction.title }}</button>
+			</mat-menu>
+		</div>
+
+		<div *ngIf="showTableActions" class="dropdown_wrap content_folderbtns">
+        <app-button [class.activeButton]="selected_type === 'Content'" class="pointer" [data]="{ButtonLabel: 'Content', type: 'outline'}" (click)="listType('Content')"></app-button>
+        <app-button [class.activeButton]="selected_type === 'Folder'" class="pointer" [data]="{ButtonLabel: 'Folder', type: 'outline'}" (click)="listType('Folder')"></app-button>
+		</div>
+	</div>
+</div>
+<div class="desktop_view">
+	<mat-table [dataSource]="data" matSort (matSortChange)="sortData($event)">
+
+		<ng-container *ngIf="showCheckboxes" matColumnDef="checkbox">
+			<mat-header-cell *matHeaderCellDef>
+				<mat-checkbox #masterCheckbox class="mat-Allcheckbox" (change)="masterToggle(masterCheckbox.checked)">
+				</mat-checkbox>
+			</mat-header-cell>
+			<mat-cell *matCellDef="let row">
+				<mat-checkbox class="mat-checkboxinner " [checked]="row.isChecked" (change)="toggleRow(row)" [attr.data-RowID]="row.id">
+				</mat-checkbox>
+			</mat-cell>
+		</ng-container>
+
+		<ng-container *ngFor="let column of columns" [matColumnDef]="column.field">
+			<ng-container *ngIf="column.sortable">
+				<mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header matSort
+					(matSortChange)="sortData($event)" (click)="onSortClick(column.name)" [ngClass]="sortedColumn === column.name ? 'custom-class' : ''">
+					{{ column.name }}
+				</mat-header-cell>
+			</ng-container>
+			<ng-container *ngIf="!column.sortable">
+				<mat-header-cell mat-header-cell *matHeaderCellDef (matSortChange)="sortData($event)">
+					{{ column.name }}
+				</mat-header-cell>
+			</ng-container>
+
+			<mat-cell mat-cell *matCellDef="let element" (click)="onRowClick(element)" [ngClass]="{'green': column.field === 'status' && element.status === 'LIVE', 'red': column.field === 'status' && element.status === 'READY_TO_USE'}" >
+        <div class="statustooltip" *ngIf="column.field === 'status'">{{ transformStatus(element.status) }}</div>
+				<div *ngIf="element[column.field] && element[column.field].toString().includes(' | '); else elseBlock">
+
+					<ng-container *ngIf="(element.parentFolderId !== undefined); else elseBlock">
+						<a [routerLink]="'/admin/dashboard/content-module/folder/' + element.id">
+							<ng-container *ngIf="element[column.field] && element[column.field].toString().includes(' | ')">
+								<div class="wrap_column_image"
+									[ngClass]="element[column.field].split(' | ')[1].toString().includes('folder') ? 'folder_icon' : ''">
+									<img class="column_image"
+										[src]="element[column.field].split(' | ')[1].toString().includes('folder') ? 'assets/images/datatable/folder_ICON.png' : element[column.field].split(' | ')[1]"
+										alt="Image">
+								</div>
+							</ng-container>
+							{{ helperService.textTransform( helperService.nameFromData(element[column.field]), 15 ) }}
+						</a>
+					</ng-container>
+
+					<ng-template #elseBlock>
+						<ng-container *ngIf="element[column.field] && element[column.field].toString().includes(' | ')">
+							<div class="wrap_column_image"
+								[ngClass]="element[column.field].split(' | ')[1].toString().includes('folder') ? 'folder_icon' : ''">
+								<img class="column_image"
+									[src]="element[column.field].split(' | ')[1].toString().includes('folder') ? 'assets/images/datatable/folder_ICON.png' : element[column.field].split(' | ')[1]"
+									alt="Image">
+							</div>
+						</ng-container>
+						{{ helperService.textTransform( helperService.nameFromData(element[column.field]), 15) }}
+					</ng-template>
+
+				</div>
+				<ng-template #elseBlock (click)="onRowClick(row)">
+					{{ element[column.field] }}
+				</ng-template>
+			</mat-cell>
+		</ng-container>
+
+		<ng-container matColumnDef="actions" *ngIf="showmainAction">
+			<mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+			<mat-cell *matCellDef="let row" class="custom-row last-of-type">
+				<ng-container *ngIf="!row.disable">
+					<button [disabled]="row.isChecked && showDropDownAction" mat-icon-button [matMenuTriggerFor]="menu">
+						<mat-icon>more_horiz</mat-icon>
+					</button>
+					<mat-menu #menu="matMenu">
+						<div>
+							<button *ngFor="let action of actions" [ngClass]="{'delete': action.label === 'Delete'}"
+								mat-menu-item (click)="action.action(row)">{{ action.label }}</button>
+						</div>
+					</mat-menu>
+				</ng-container>
+			</mat-cell>
+		</ng-container>
+
+		<mat-header-row *matHeaderRowDef="displayedColumns;"></mat-header-row>
+		<mat-row (click)="selection02.toggle(row)" *matRowDef="let row; columns: displayedColumns;"
+			[class.selected]="selection02.isSelected(row)"></mat-row>
+	</mat-table>
+
+</div>
+
+<div class="mobile_view">
+	<main>
+		<table class="mobile_data_table">
+			<thead>
+				<tr>
+					<th *ngFor="let column of columns" (click)="onSort(column.field)">
+						<span>{{column.name}}</span>
+						<span *ngIf="column.sortable && column.field === sortColumn">
+							<i class="fa fa-sort-{{sortDirection}}"></i>
+						</span>
+					</th>
+					<th *ngIf="actions.length > 0"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let row of data">
+					<td *ngIf="actions.length > 0" class="actions">
+						<div class="mob_action">
+              <span class="mbaciton">Actions</span>
+							<button mat-icon-button [matMenuTriggerFor]="mob_action_menu">
+
+								<mat-icon>more_vert</mat-icon>
+							</button>
+							<mat-menu #mob_action_menu="matMenu">
+								<button *ngFor="let action of actions" [ngClass]="{'delete': action.label === 'Delete'}"
+									mat-menu-item (click)="action.action(row)">{{ action.label }}</button>
+							</mat-menu>
+						</div>
+					</td>
+					<td *ngFor="let column of columns" [attr.data-title]="column.name" (click)="onRowClick(row)">
+
+						<ng-container *ngIf="(row.parentFolderId !== undefined); else elseBlock">
+							<a [routerLink]="'/admin/dashboard/content-module/folder/' + row.id">
+								<span class="title__">
+									<ng-container *ngIf="row[column.field] && row[column.field].toString().includes(' | ')">
+										<div class="wrap_column_image"
+											[ngClass]="row[column.field].split(' | ')[1].toString().includes('folder') ? 'folder_icon' : ''">
+											<img class="column_image"
+												[src]="row[column.field].split(' | ')[1].toString().includes('folder') ? 'assets/images/datatable/folder_ICON.png' : row[column.field].split(' | ')[1]"
+												alt="Image">
+										</div>
+									</ng-container>
+									<div class="text__">
+										{{ helperService.textTransform( helperService.nameFromData(row[column.field]), 18) }}
+									</div>
+								</span>
+							</a>
+						</ng-container>
+
+						<ng-template #elseBlock>
+							<span class="title__">
+								<ng-container *ngIf="row[column.field] && row[column.field].toString().includes(' | ')">
+									<div class="wrap_column_image"
+										[ngClass]="row[column.field].split(' | ')[1].toString().includes('folder') ? 'folder_icon' : ''">
+										<img class="column_image"
+											[src]="row[column.field].split(' | ')[1].toString().includes('folder') ? 'assets/images/datatable/folder_ICON.png' : row[column.field].split(' | ')[1]"
+											alt="Image">
+									</div>
+								</ng-container>
+								<div class="text__">
+									{{ helperService.textTransform( helperService.nameFromData(row[column.field]), 18) }}
+								</div>
+							</span>
+						</ng-template>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+
+		<!-- <table>
+				<thead>
+				<tr>
+					<th *ngFor="let  of columns"><span>{{data.name}}</span></th>
+					<th></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td *ngIf="let  of data" data-title="Report Type">
+					<span>Management Survey</span>
+					</td>
+					<td data-title="Job No1">
+					<span>J168966</span>
+					</td>
+					<td data-title="Order No">
+					<span>PO123</span>
+					</td>
+					<td data-title="Start">
+					<span>18 Feb 2020</span>
+					</td>
+					<td data-title="Due">
+					<span>18 Feb 2020</span>
+					</td>
+					<td data-title="Client">
+					<span>Taylor (Test Test)</span>
+					</td>
+					<td data-title="Site">
+					<span>1 King Street, Some Town, Some County, AB12 3CD, UPRN: 12345</span>
+					</td>
+					<td class='select'>
+					<span>
+						<span class="button">Select</span>
+					</span>
+					</td>
+				</tr>
+				</tbody>
+			</table> -->
+	</main>
+</div>

@@ -1,0 +1,244 @@
+.orientation_screen{
+    display: flex;
+    align-items: center;
+    padding: 165px 0px 0px;
+    .left{
+        width: 50%;
+        max-width: 520px;
+        h5{
+            font-size: 28px;
+            font-weight: 500;
+        }
+        .form_control{
+            label{
+                font-size: 20px;
+                color: #000;
+                font-weight: 500;
+                display: block;
+                margin: 0px 0px 31px;
+            }
+            &.select_orientation{
+                margin: 0px 0px 58px;
+            }
+            &.location{
+                label{
+                    margin: 0px 0px 0px;
+                }
+                input{
+                    width: 100%;
+                    border: 0px;
+                    border-bottom: 1px solid #707070;
+                    font-size: 20px !important;
+                    &::placeholder{
+                      font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+    .right{
+        width: 50%;
+        display: flex;
+        padding-left: 30px;
+        & > div{
+            float: right;
+            background-color: #292F36;
+            width: 283px;
+            height: 472px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all ease .3s;
+            span{
+                color: #fff;
+                font-size: 30px;
+                font-weight: 500;
+            }
+        }
+        &.horizontal{
+            & > div{
+                height: 283px;
+                width: 472px;
+            }
+        }
+    }
+    .screen_name{
+        display: flex;
+        align-items: center;
+        line-height: 28px;
+        margin: 54px 0px 50px;
+        .input_text{
+            display: flex;
+            align-items: center;
+            .screenName{
+                font-size: 20px;
+                color: #000;
+                font-weight: 500;
+                margin: 0px 12px 0px 0px;
+            }
+            input{
+                margin: 0px 10px 0px 0px;
+                padding: 0px 0px 2px;
+                background: transparent !important;
+                outline: 0px !important;
+                box-shadow: none;
+                border: 0px;
+                border-bottom: 1px solid #ddd;
+                font-size: 20px !important;
+                font-weight: 500;
+                display: none;
+                width: 250px;
+            }
+            button{
+                background: transparent;
+                border: 0;
+                outline: 0px;
+                width: 18px;
+                img{
+                    max-width: 17px;
+                }
+                &.update_screen_name{
+                    display: none;
+                    img{
+                        max-width: 22px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:1500px){
+    .orientation_screen {
+        padding: 125px 0px 0px;
+    }
+}
+@media(max-width:1280px){
+    .orientation_screen {
+        padding: 125px 0px 0px;
+        .left {
+            h5{
+                font-size:24px;
+            }
+            .screen_name{
+                margin: 32px 0px 38px;
+            }
+            .form_control {
+                label{
+                    font-size: 18px;
+                    margin: 0px 0px 25px;
+                }
+                &.select_orientation{
+                    margin: 0px 0px 50px;
+                }
+            }
+        }
+        .right{
+            & > div{
+                width: 250px;
+                height: 380px;
+            }
+            &.horizontal{
+                & > div{
+                    height: 250px;
+                    width: 380px;
+                }
+            }
+        }
+    }
+}
+@media(max-width:960px){
+    .orientation_screen {
+        padding: 50px 0px 50px;
+        flex-wrap: wrap;
+        .left {
+            order: 2;
+            width: 100%;
+        }
+        .right{
+            width: 100%;
+            order: 1;
+            float: none !important;
+            & > div{
+                float: none !important;
+                width: 150px;
+                height: 200px;
+                margin: 0 auto 50px;
+                span{
+                    font-size: 18px;
+                }
+            }
+            &.horizontal{
+                & > div{
+                    height: 150px;
+                    width: 200px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:550px){
+    .orientation_screen {
+        padding: 50px 0px 50px;
+        flex-wrap: wrap;
+        .left {
+            h5{
+                font-size:20px;
+            }
+            .screen_name{
+                margin: 20px 0px 30px;
+            }
+            .form_control {
+                label{
+                    font-size: 17px;
+                    margin: 0px 0px 20px;
+                }
+                &.select_orientation{
+                    margin: 0px 0px 40px;
+                }
+            }
+        }
+    }
+}
+
+
+.loader-overlay {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: calc(100% - 260px);
+    height: calc(100% - 70px);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  border-top: 4px solid rgba(255, 255, 255, 0.3);
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loaded .loader-overlay {
+  opacity: 0;
+  pointer-events: none;
+}

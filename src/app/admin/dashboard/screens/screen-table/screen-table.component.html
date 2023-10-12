@@ -1,0 +1,29 @@
+<section class="content module_wrap">
+	<div class="content-block">
+		<app-wrapper>
+
+			<!-- PAGE WRAP -->
+			<div class="page_wrap">
+
+				<!-- HEADER -->
+				<app-title-bar [data]="{
+                title: 'Screens'
+              }"></app-title-bar>
+				<!-- HEADER END -->
+
+				<!-- CUSTOM DATA TABLE -->
+				<div class="custom_datatable">
+        <app-table [data]="datatableRecord" [showCheckboxes]="true" [showmainAction]="true" [columns]="datatableColumns"
+          [actions]="datatableActions" [showTableActions]="false" [checkAllDropDownAction]="check_all_drop_down_actions"
+          (send_action_type)="receiveActionType($event)" (datatable_operation)="receiveDatatableOperation($event)"></app-table>
+
+					<app-paginator [totalItems]="pagination.totalItems" [pageSize]="pagination.pageSize"
+						[pageSizeOptions]="pagination.pageSizeOptions" (pageChange)="pageChangeEvent($event)">
+					</app-paginator>
+				</div>
+			</div>
+			<!-- PAGE WRAP END -->
+
+		</app-wrapper>
+	</div>
+</section>

@@ -1,0 +1,13 @@
+::ng-deep .mat-form-field {
+    font-family: pop !important;
+    outline-color: black;
+
+  
+  }
+
+  ::ng-deep .mat-focused .mat-form-field-label {
+    color: black !important;
+}
+::ng-deep .mat-form-field-ripple {
+    background-color: black !important;
+}

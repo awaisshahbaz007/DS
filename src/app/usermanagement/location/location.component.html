@@ -1,0 +1,46 @@
+<section class="content">
+ 
+    <div class="content-block">
+        <div class="til">
+            Location
+        </div>
+      <app-wrapper>
+       
+        <div class="row" *ngIf="!loader">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="wrappers">
+                    <div>
+                        <div class="location">
+                            Location details
+                        </div>
+                    </div>
+                    <div mat-dialog-content>
+                        <form action="" class="form_oter">
+                          <app-form [group]="group" (formValueChanged)="formValueChanged($event)" [controls]="controls" style="width:100%"></app-form>
+                          
+                        </form>
+                        <div>
+                          <div class="flex_end padding_20">
+                            <div class="ml_20">
+                              <app-button
+                                [data]="{
+                                  ButtonLabel: 'Save Profile',
+                                  buttonDisabled: check,
+                                  type: 'primary'
+                                }"
+                                (onSubmitValue)="onApply()"
+                              ></app-button>
+                            </div>
+                          </div>
+                        </div>
+                      </div> 
+                </div> 
+            </div>
+        </div>
+         
+      </app-wrapper>
+    </div>
+  </section>
+  
+  
+  

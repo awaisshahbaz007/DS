@@ -1,0 +1,27 @@
+<section class="content module_wrap">
+	<div class="content-block">
+		<app-wrapper>
+			<app-title-bar [data]="{
+					title: 'Users',
+					button_name: 'Add User'
+				}"
+				(buttonSubmit)="addNewUser()"></app-title-bar>
+
+			<app-table [data]="datatableRecord" [showCheckboxes]="false" [showmainAction]="true" [columns]="datatableColumns"
+				[actions]="datatableActions"></app-table>
+
+			<app-paginator [totalItems]="pagination.totalPage" [pageSize]="pagination.pageSize"
+				[pageSizeOptions]="pagination.pageSizeOptions" (pageChange)="onPageChange($event)"></app-paginator>
+
+			<!-- Loading spinner -->
+			<!-- <div  class="tbl-spinner">
+				<mat-progress-spinner
+				color="primary"
+				[diameter]="40"
+				mode="indeterminate"
+				>
+				No results
+        	</div> -->
+		</app-wrapper>
+	</div>
+</section>

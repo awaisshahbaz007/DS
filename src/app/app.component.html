@@ -1,0 +1,6 @@
+<app-header  *ngIf="checkUserActive()"></app-header>
+<app-sidebar  *ngIf="checkUserActive()"></app-sidebar>
+<div [ngClass]="isNotSearchbar ? 'not_searchBar' : ''">
+  <app-page-loader></app-page-loader>
+  <router-outlet></router-outlet>
+</div>

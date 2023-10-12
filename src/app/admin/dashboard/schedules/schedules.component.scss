@@ -1,0 +1,109 @@
+
+  .datatable_filters.form {
+     padding: 20px 25px 25px 25px;
+     background: rgba(227, 229, 230, .35);
+     display: flex;
+     align-items: flex-end;
+     flex-wrap: wrap;
+     border-radius: 10px;
+     p {
+       font-size: 22px;
+       margin: 0px;
+       color: #272D34;
+       text-align: center;
+     }
+     label{
+      font-weight: 500;
+     }
+     .input{
+      width: calc(25% - 41.25px);
+      margin-left: 15px;
+      &:first-child{
+        margin-left: 0;
+      }
+
+     }
+     .input2{
+          margin-left: 15px;
+     }
+     input {
+       width: 100%;
+       background: #FFFFFF 0% 0% no-repeat padding-box;
+       border: 1px solid rgba(0, 0, 0, 0.4);
+       border-radius: 8px;
+       color: rgba(39, 45, 52, .9);
+       font-size: 16px !important;
+       padding: 12px 20px;
+       &::-webkit-input-placeholder {
+         color: rgba(39, 45, 52, .5);
+         font-size: 16px !important;
+       }
+       &:-ms-input-placeholder {
+         color: rgba(39, 45, 52, .5);
+         font-size: 16px !important;
+       }
+       &::placeholder {
+         color: rgba(39, 45, 52, .5);
+         font-size: 16px !important;
+       }
+     }
+      select {
+        width: 100%;
+        background: #FFFFFF;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 8px;
+        padding: 4px 18px;
+        min-height: 50px;
+        overflow: hidden;
+        appearance: none;
+        font-size: 12px !important;
+        -webkit-appearance: none;
+          -moz-appearance: none;
+          background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+          background-repeat: no-repeat;
+          background-position-x: 99%;
+          background-position-y: 12px;
+      }
+   }
+.buttonsright{
+  display: flex;
+  align-items: center;
+  app-button{
+    margin-left: 5px;
+  }
+}
+@media (max-width:992px) {
+    .datatable_filters.form{
+      .input{
+          width: calc(50% - 7.5px);
+          margin-left: 15px;
+          margin-top: 15px;
+          &:first-child,&:nth-child(2){
+            margin-top: 0;
+          }
+          &:nth-child(3n){
+            margin-left: 0;
+          }
+      }
+      .input2{
+        margin-top: 15px;
+        margin-left: 0;
+      }
+    }
+}
+@media (max-width:576px) {
+  .datatable_filters.form {
+    padding: 15px 15px 20px 15px;
+    .input {
+      width: 100%;
+      margin-left: 0px;
+      margin-top: 15px;
+      &:first-child{
+        margin-top: 0;
+      }
+      &:nth-child(2) {
+        margin-top: 15px;
+      }
+    }
+  }
+}

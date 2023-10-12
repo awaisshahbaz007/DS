@@ -1,0 +1,285 @@
+<div class="addContainer"   [ngClass]="{'hasSearchBar': data.showSearchbar, 'playlistpop': data.type === '9','screenselectionpop': data.type === '8'}">
+
+    <div class="popup_heading" [ngClass]="data.showSearchbar ? 'showSearchbar' : ''"
+        [ngClass]="data.type === '12' ? 'wrap_div' : ''">
+        <div class="grey_bar"></div>
+
+        <h2 *ngIf="data.type !== '10'">{{data.title}}</h2>
+        <app-button *ngIf="data.type === '12'" [data]="{
+            ButtonLabel: 'Create New Folder',
+            type: 'bg_color'
+            }" (click)="onAddNewFolder()" class="createnewfolder"></app-button>
+
+        <div class="schedule_name" *ngIf="data.type === '10'">
+            <div class="input_text">
+                <span class="scheduleName">New Schedule</span>
+                <input type="text" name="edit_schedule_name" id="edit_schedule_name">
+                <button class="edit_schedule_btn" (click)="onEditschedule()">
+                    <img src="assets/images/playlist/feather-edit.png">
+                </button>
+                <button class="update_schedule_name" (click)="onUpdatescheduleName()">
+                    <img src="assets/images/done_icon.png">
+                </button>
+            </div>
+        </div>
+        <div class="search_form" *ngIf="data.showSearchbar">
+            <app-popup-search></app-popup-search>
+        </div>
+    </div>
+<div *ngIf="data.type == '16'" class="closebtnpopup">
+  <app-button [data]="{
+                    ButtonLabel: '',
+
+                    type: 'outline'
+                  }" (click)="onCloseAll()"></app-button>
+</div>
+    <div class="form">
+        <app-recent-item-popup *ngIf="data.type === '4'" (PlayListSelectEvent)="setContentPlayListID($event)"
+            (PlayListZoneSelectEvent)="setContentPlayListZoneIDs($event)"></app-recent-item-popup>
+        <app-rename-item *ngIf="data.type === '5'" (folderRenameEvent)="setFolderName($event)"></app-rename-item>
+        <app-delete-item *ngIf="data.type === '6'" [currentFolderData]="selected_recent_item_data"></app-delete-item>
+        <app-folder-popup *ngIf="data.type === '7'" (folderNameEvent)="setFolderName($event)"></app-folder-popup>
+        <app-preview-playlist *ngIf="data.type === '16'"></app-preview-playlist>
+
+        <!-- This is for screens in POPUP on Scheduling page  -->
+        <div class="custom_datatable selection_datatable" *ngIf="data.type === '8'">
+            <app-screen-list (checkoutButtonSelected)="onCheckoutButtonSelected($event)"></app-screen-list>
+        </div>
+
+        <!-- This is for playlist in POPUP on Scheduling page  -->
+        <div class="custom_datatable selection_datatable" *ngIf="data.type === '9'">
+            <app-popup-playlist (radioButtonSelected)="onRadioButtonSelected($event)"></app-popup-playlist>
+        </div>
+
+        <app-move-item *ngIf="data.type === '12'" (folderSelectEvent)="setFolderAddOption($event)"></app-move-item>
+        <app-show-playlist *ngIf="data.type === '14'"></app-show-playlist>
+        <app-remove-item *ngIf="data.type === '13'"></app-remove-item>
+
+        <div class="new_schedule_mob_form" *ngIf="data.type === '10'">
+            <div class="form_control">
+                <label for="#">Playlist</label>
+                <mat-form-field>
+                    <mat-label>Select Playlist</mat-label>
+                    <mat-select (selectionChange)="onSelectPlaylistFromDD($event)">
+                        <mat-option *ngFor="let playlist of playlist_for_schedule" [value]="playlist.id">
+                            {{ playlist.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form_control">
+                <label for="#">Start Date & Time</label>
+                <input type="datetime-local" id="start_date_time" name="start_date_time" [value]="scheduleStartDate"
+                    (input)="onChangeScheduleStartDate($event)" />
+            </div>
+            <div class="form_control">
+                <label for="#">End Date & Time</label>
+                <input type="datetime-local" id="end_date_time" name="end_date_time" [value]="scheduleEndDate"
+                    (input)="onChangeScheduleEndDate($event)" />
+            </div>
+            <div class="form_control checkbox_group">
+                <ng-container *ngFor="let week_option of schedule_week_options">
+                    <mat-checkbox class="example-margin" [(ngModel)]="week_option.checked"
+                        (change)="onSelectScheduleWeekDays()">{{ week_option.label }}</mat-checkbox>
+                </ng-container>
+            </div>
+        </div>
+
+        <form action="" class="form_oter custom_form_style" *ngIf="data.type === '1'">
+            <app-form [group]="group" (formValueChanged)="formValueChanged($event)" [controls]="controls"
+                style="width:100%"></app-form>
+        </form>
+
+        <form action="" class="form_oter custom_form_style" *ngIf="data.type === '2'"
+            [ngClass]="data.type === '2' ? 'logoutme' : ''">
+            <div class="user_labele">
+                {{data.content}}
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="data.type !== '16'" class="button_wrap" [ngClass]="data.type === '10' ? ' add_screen_btn' : ''">
+        <div *ngIf="data.type === '10'">
+            <app-button [data]="{
+                    ButtonLabel: 'Add Screen',
+                    type: 'bg_color'
+                }" (click)="onAddScreens()"></app-button>
+        </div>
+
+        <div *ngIf="data.type !== '16'">
+          <app-button [data]="{
+                      ButtonLabel: 'Cancel',
+
+                      type: 'outline'
+                    }" (click)="onNoClick()"></app-button>
+        </div>
+
+        <div *ngIf="data.type === '2'">
+            <app-button [data]="{
+              ButtonLabel: data.action,
+              buttonDisabled: false,
+              type: 'warn'
+            }" (onSubmitValue)="onNoWarn()"></app-button>
+        </div>
+
+        <div *ngIf="data.type === '8'">
+            <app-button [data]="{
+              ButtonLabel: data.action,
+              type: 'bg_color',
+              buttonDisabled: true
+            }" (click)="onSelectScreens()" ></app-button>
+        </div>
+
+        <div *ngIf="data.type === '9'">
+            <app-button [data]="{
+              ButtonLabel: data.action,
+              buttonDisabled: !isButtonEnabled,
+              type: 'bg_color'
+            }" (click)="onSelectPlaylist()"   ></app-button>
+        </div>
+
+        <div *ngIf="data.type === '12'">
+            <app-button [data]="{
+              ButtonLabel: 'Add Item',
+              buttonDisabled: false,
+              type: 'bg_color'
+            }" (click)="onAddToItemSubmit()"></app-button>
+        </div>
+
+        <div *ngIf="data.type === '1'">
+            <app-button [data]="{
+            ButtonLabel: data.action,
+            buttonDisabled: check,
+            type: 'primary'
+          }" (onSubmitValue)="onApply()"></app-button>
+        </div>
+
+        <div *ngIf="data.type === '4'">
+            <app-button [data]="{
+            ButtonLabel: data.action,
+            buttonDisabled: check,
+            type: 'bg_color'
+          }" (click)="onClickAddToPlaylistSubmit()"></app-button>
+        </div>
+
+        <div *ngIf="data.type === '5'">
+            <app-button [data]="{
+            ButtonLabel: data.action,
+            buttonDisabled: check,
+            type: 'bg_color'
+          }" (click)="onClickRenameSubmit()" class="min_button button_ht custom_button bg_color"></app-button>
+        </div>
+
+        <div *ngIf="data.type === '6'">
+            <app-button [data]="{
+            ButtonLabel: data.action,
+            buttonDisabled: check,
+            type: 'bg_color'
+          }" (click)="onClickDeleteSubmit()" class="min_button button_ht custom_button bg_color"></app-button>
+        </div>
+
+        <div *ngIf="data.type === '7'">
+            <app-button [data]="{
+              ButtonLabel: data.action,
+              buttonDisabled: check,
+              type: 'bg_color'
+            }" (click)="onClickAddFolderSubmit()" class="min_button button_ht custom_button bg_color"></app-button>
+        </div>
+
+        <div *ngIf="data.type === '10'">
+            <app-button [data]="{
+            ButtonLabel: data.action,
+            buttonDisabled: check,
+            type: 'bg_color'
+          }" (click)="onClickSaveSchedule()"></app-button>
+        </div>
+
+        <div *ngIf="data.type === '13'">
+            <app-button [data]="{
+              ButtonLabel: data.action,
+              buttonDisabled: check,
+              type: 'bg_color'
+            }" (click)="onClickRemoveSubmit()" class="min_button button_ht custom_button bg_color"></app-button>
+        </div>
+
+    </div>
+
+    <!-- <form class="register-form m-4" [formGroup]="departmentListForm" (ngSubmit)="submit">
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Department No</mat-label>
+              <input matInput formControlName="d_no" required>
+              <mat-icon matSuffix>receipt</mat-icon>
+              <mat-error *ngIf="departmentListForm.get('d_no').hasError('required')">
+                Department no is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Department Name</mat-label>
+              <input matInput formControlName="d_name" required>
+              <mat-icon matSuffix>face</mat-icon>
+              <mat-error *ngIf="departmentListForm.get('d_name').hasError('required')">
+                Department Name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Department date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="d_date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="departmentListForm.get('d_date').hasError('required')">
+                Please select date
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Department Head</mat-label>
+              <input matInput formControlName="d_head" required>
+              <mat-icon matSuffix>account_circle</mat-icon>
+              <mat-error *ngIf="departmentListForm.get('d_head').hasError('required')">
+                Department Head is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <div class="m-b-20">
+              <mat-label class="msr-3">Status:</mat-label>
+              <mat-radio-group aria-label="Select status" formControlName="status" required>
+                <mat-radio-button value="Active">Active</mat-radio-button>
+                <mat-radio-button value="Inactive">Inactive</mat-radio-button>
+                <mat-error *ngIf="departmentListForm.get('status').hasError('required')">
+                  Select status
+                </mat-error>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <div class="example-button-row">
+              <button mat-raised-button color="primary" [type]="submit" [disabled]="!departmentListForm.valid"
+                [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+              <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form> -->
+</div>

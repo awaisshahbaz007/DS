@@ -1,0 +1,57 @@
+<section class="content module_wrap">
+    <div class="content-block">
+        <app-wrapper>
+            <!-- PAGE WRAP -->
+            <div class="page_wrap" style="display: block;">
+
+                <!-- INNER DIRTORY -->
+                <div class="inner_directory">
+
+                    <!-- FOLDER DIRECTORY -->
+                    <div class="folder_directory">
+                        <h2 routerLink="/admin/dashboard/content-module/Folder"><img
+                                src="assets/images/datatable/arrow_left.png">{{ folder_name }}</h2>
+                        <ul>
+                            <li class="parent_directory">
+                                <a routerLink="/admin/dashboard/content-module/Folder"><img src="assets/images/datatable/video_icon.png">Folder</a>
+                            </li>
+                            <li class="child_directory">
+                                <a><img src="assets/images/datatable/folder_icon02.png">{{ folder_name }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- FOLDER DIRECTORY END-->
+
+                    <!-- UPLOAD FOLDER DATA -->
+                    <div class="upload_folder_data">
+                        <app-file-upload [dropFileDesign]="true" [headerFileDesign]="showFileSelection" [ngClass]="showFileSelection ? '' : 'hideTable'" (upload_file_status)="receiveUploadFileStatus($event)"></app-file-upload>
+
+                        <div class="folder-inner-data" *ngIf="!showFileSelection">
+                            <!-- CUSTOM DATA TABLE -->
+                            <div class="custom_datatable">
+                                <app-table [data]="datatableRecord" [showCheckboxes]="true" [showmainAction]="true"
+                                    [columns]="datatableColumns" [actions]="datatableActions"
+                                    [checkAllDropDownAction]="check_all_drop_down_actions"
+                                    (send_action_type)="receiveActionType($event)" (send_selected_row)="receiveSelectedRow($event)"
+                                    (datatable_operation)="receiveDatatableOperation($event)"
+
+                                    [showTableActions]="false" [showTableHeading]="false"></app-table>
+
+                                <app-paginator [totalItems]="pagination.totalItems" [pageSize]="pagination.pageSize"
+                                    [pageSizeOptions]="pagination.pageSizeOptions"
+                                    (pageChange)="pageChangeEvent($event)">
+                                </app-paginator>
+                            </div>
+                            <!-- CUSTOM DATA TABLE END -->
+                        </div>
+
+                    </div>
+                    <!-- UPLOAD FOLDER DATA END -->
+
+                </div>
+                <!-- INNER DIRTORY END -->
+            </div>
+            <!-- PAGE WRAP END -->
+        </app-wrapper>
+    </div>
+</section>

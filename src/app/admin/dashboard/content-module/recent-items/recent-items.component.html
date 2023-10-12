@@ -1,0 +1,41 @@
+<!-- RECENT ITEMS -->
+<div class="recent_items">
+	<h4 class="sub_heading">Recent Items</h4>
+	<ul class="recent_list" *ngIf="!isMobileScreenSize">
+		<li *ngFor="let item of dataArray">
+			<div (click)="SelectRecentItem(item)">
+				<div class="image_wrap">
+					<img *ngIf="item.type === 'IMAGE'" [src]="item.perma_link" alt="Image">
+					<!-- <video *ngIf="item.type === 'VIDEO'" [poster]="item.thumb_link" width="100%" height="100%" autoplay muted>
+						<source [src]="item.perma_link" [type]="item.videotype">
+					</video> -->
+					<div *ngIf="item.type === 'VIDEO'" class="video_taginner">
+						<img *ngIf="item.type === 'VIDEO'" [src]="item.thumb_link" class="video_tagimg" alt="Image">
+					</div>
+				</div>
+				<h3>{{ item.name }}</h3>
+			</div>
+		</li>
+	</ul>
+
+	<ul *ngIf="isMobileScreenSize" class="recent_list mobile_recent_list">
+		<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+			<li ngxSlickItem *ngFor="let item of dataArray" class="slick_slide"
+				[ngClass]="{'active': selectedItem === item}">
+				<div (click)="SelectRecentItem(item)">
+					<div class="image_wrap">
+						<img *ngIf="item.type === 'IMAGE'" [src]="item.perma_link" alt="Image">
+						<!-- <video *ngIf="item.type === 'VIDEO'" [poster]="item.thumb_link" width="100%" height="100%" autoplay muted>
+              <source [src]="item.perma_link" [type]="item.videotype">
+            </video> -->
+						<div class="video_taginner">
+							<img *ngIf="item.type === 'VIDEO'" [src]="item.thumb_link" class="video_tagimg" alt="Image">
+						</div>
+					</div>
+					<h3>{{ helperService.textTransform(item.name, 8) }}</h3>
+				</div>
+			</li>
+		</ngx-slick-carousel>
+	</ul>
+</div>
+<!-- RECENT ITEMS END -->

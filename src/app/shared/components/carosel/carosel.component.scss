@@ -1,0 +1,30 @@
+.carosel_img{
+    width: 100%;
+    height: 94vh;
+    object-fit: cover;
+}
+
+// ngb-carousel{
+//     width: 100%;
+//     height: 90vh;
+// }
+::ng-deep .slick-dots{
+    bottom: 12px !important
+  }
+  ::ng-deep .slick-dotted.slick-slider {
+    margin-bottom: 0px  !important
+}
+  ::ng-deep .slick-dots li button:before{
+    color: white !important;
+  }
+  
+  ::ng-deep .slick-dots li.slick-active button:before{
+    color: white !important;
+  }
+  ::ng-deep .slick-dots li{
+    height: 18px  !important;
+    width: 3px  !important;
+  }
+  ::ng-deep .slick-dots li button:before {
+    font-size: 9px  !important;
+  }

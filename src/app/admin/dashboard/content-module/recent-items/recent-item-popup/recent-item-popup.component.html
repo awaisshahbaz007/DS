@@ -1,0 +1,57 @@
+<div class="flex menu_popup_content">
+    <div class="menu_item">
+        <div class="image_wrap">
+            <img *ngIf="content_item_type === 'image'" src="{{ content_item_permaLink }}" alt="">
+
+            <video #videoPlayer *ngIf="content_item_type === 'video'" poster="{{ content_item_thumbnail }}" width="100%" height="100%" autoplay muted>
+                <source src="{{ content_item_permaLink }}" type="video/{{ item_video_type }}">
+            </video>
+        </div>
+        <h4>{{ content_item_title }}</h4>
+    </div>
+
+    <div class="right">
+        <form *ngIf="playlistField === false">
+            <app-button [data]="{
+                ButtonLabel: 'Design on Canva',
+                buttonDisabled: true,
+                type: 'canva'
+            }" class="min_button bg_color canva_btn button_ht custom_button"></app-button>
+
+            <app-button [data]="{
+                ButtonLabel: 'Add to Playlist',
+                buttonDisabled: true,
+                type: 'outline'
+            }" (click)="onAddPlaylist()" class="min_button button_ht custom_button"></app-button>
+
+            <app-button [data]="{
+                ButtonLabel: 'Show playlists',
+                buttonDisabled: true,
+                type: 'outline'
+            }" class="min_button button_ht custom_button showbtnlist"></app-button>
+        </form>
+
+        <form class="playlist_form" *ngIf="playlistField === true">
+            <div class="form_control">
+                <label for="#">Playlists*</label>
+                <select id="playlistSelect" (change)="onPlaylistChange($event)">
+                    <option disabled selected>Select Playlist</option>
+                    <option *ngFor="let list of playlist" [value]="list.id">{{ list.name }}</option>
+                </select>
+            </div>
+            <div class="form_control zoneListmain">
+              <label for="#">Zone List*</label>
+              <select id="zoneSelect" multiple  (click)="onZonelistChange($event)">
+                <option *ngFor="let zone of zonelist" [value]="zone.id">{{ zone.name }}</option>
+              </select>
+            </div>
+            <div class="form_control">
+                <label for="#">Time*</label>
+                <div class="time_wrap">
+                    <div class="time">{{ content_duration }}</div>
+                    <span>Sec</span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

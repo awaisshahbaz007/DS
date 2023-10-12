@@ -1,0 +1,21 @@
+.popup_playlist {
+    max-height: 300px;
+    overflow-y: auto;
+    li{
+        a{
+            width: 100%;
+            padding: 16px 0px 17px 38px;
+            border-bottom: 1px solid #ddd;
+            font-size: 15px !important;
+            display: block;
+            font-weight: 500;
+            background: url('./../../../../../assets/images/related_item/-playlist_icon.png') left center no-repeat;
+            cursor: pointer;
+        }
+        &:last-child{
+            a{
+                border-bottom: 0px;
+            }
+        }
+    }
+}

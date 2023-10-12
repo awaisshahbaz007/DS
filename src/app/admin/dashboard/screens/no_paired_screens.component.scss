@@ -1,0 +1,188 @@
+.no_screen_paired{
+    .container{
+        max-width: 1124px;
+        padding: 210px 20px 0px;
+        margin: 0 auto;
+        width: 100%;
+        .heading{
+            text-align: center;
+            margin: 0px 0px 30px;
+            h2{
+                font-size: 38px;
+                color: #000;
+                font-weight: 600;
+                margin: 0px 0px 7px 0px;
+            }
+            p{
+                letter-spacing: 0.63px;
+                color: #A1A1A1;
+                font-size: 14px;
+            }
+        }
+        .screens_list{
+            display: flex;
+            flex-wrap: wrap;
+            .screen{
+                width: calc(33.33% - 44px);
+                margin-right: 65px;
+                text-align: center;
+                position: relative;
+                &::after{
+                    content: "";
+                    background: url('/assets/images/next_icon.png') center center no-repeat;
+                    position: absolute;
+                    right: -45px;
+                    top: 90px;
+                    width: 25px;
+                    height: 25px;
+                    display: inline-block;
+                }
+                &:last-child{
+                    margin-right: 0px;
+                    &::after{
+                        display: none;
+                    }
+                }
+                p{
+                    letter-spacing: 0.77px;
+                    font-size: 17px;
+                    font-weight: 500;
+                    margin: 0px 0px 0px;
+                    a{
+                        color: #4676EE;
+                    }
+                }
+                .screen_image{
+                    height: 245px;
+                    padding-top: 25px;
+                    &.new_screen{
+                        & > div{
+                            height: 158px;
+                            border: 3px solid #000;
+                            width: 100%;
+                            max-width: 265px;
+                            margin: 0 auto;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            span{
+                                color: #4676EE;
+                                font-size: 17px;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+                }
+                &:first-child{
+                    .screen_image{
+                        padding-top: 0px;
+                    }   
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 1280px){
+    .no_screen_paired {
+        .container{
+            padding: 130px 0px 0px;
+            .screens_list{
+                .screen{
+                    .screen_image{
+                        img{
+                            max-width: 100%;
+                            height: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 1024px){
+    .no_screen_paired {
+        .container{
+            padding: 100px 0px 0px;
+            .screens_list{
+                .screen{
+                    .screen_image{
+                        &.new_screen{
+                            & > div{
+                                height: 140px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 900px){
+    .no_screen_paired {
+        .container{
+            padding: 80px 0px 0px;
+            .screens_list{
+                .screen{
+                    .screen_image{
+                        height: 200px;
+                        &.new_screen{
+                            & > div{
+                                height: 120px;
+                            }
+                        }
+                    }
+                    &:after{
+                        top:68px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 768px){
+    .no_screen_paired {
+        .container{
+            padding: 100px 0px 0px;
+            .heading{
+                margin: 10px 0px 20px;
+                h2{
+                    font-size: 28px;
+                }
+            }
+            .screens_list{
+                .screen{
+                    margin-bottom: 20px;
+                    border-bottom: 1px solid #ddd;
+                    padding-bottom: 35px;
+                    width: 100%;
+                    margin-right: 0px;
+                    &:last-child{
+                        border-bottom: 0px;
+                        margin-bottom: 0px;
+                        padding-bottom: 0px;
+                    }
+                    p{
+                        font-size: 15px;
+                        font-weight: 500;
+                        margin: 18px auto 0px;
+                        max-width: 300px;
+                    }
+                    .screen_image{
+                        height: auto;
+                        &.new_screen{
+                            & > div{
+                                height: 140px;
+                            }
+                        }
+                    }
+                    &:after{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,169 @@
+<section class="content module_wrap">
+    <div class="content-block">
+      <app-wrapper>
+
+        <!-- PAGE WRAP -->
+        <div class="page_wrap">
+
+            <!-- HEADER -->
+            <app-title-bar
+                [data]="{
+                    title: 'Choose Layout'
+                }"></app-title-bar>
+            <!-- HEADER END -->
+
+            <div class="layout_list">
+                <ul>
+                    <!-- <ng-container *ngFor="let layout of all_layouts">
+                        <li (click)="selectlayout( layout.id )" class="{{ layout.id == selected_layout ? 'selected' : ''}}">
+                            <div class="{{ layout.name }} main_layout layout_item">
+                                  <img src="assets/images/zone1.png">
+                            </div>
+                            <div>{{ layout.name }}</div>
+                        </li>
+                    </ng-container> -->
+
+
+                     <li (click)="selectlayout('1')" [class.selected]="selected_layout == '1'">
+                        <div class="main_layout layout_item">
+                            <span></span>
+                        </div>
+                        <div>Vertical</div>
+                    </li>
+                    <li (click)="selectlayout('2')"  [class.selected]="selected_layout == '2'">
+                        <div class="split_hor_layout layout_item">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div>Split Vertical</div>
+                    </li>
+                    <li (click)="selectlayout('3')"  [class.selected]="selected_layout == '3'">
+                        <div class="triple_hor_layout layout_item">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div>Triple Vertical</div>
+                    </li>
+                    <li (click)="selectlayout('4')"  [class.selected]="selected_layout == '4'">
+                        <div class="four_ver_layout layout_item">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div>Four Vertical Pane</div>
+                    </li>
+                    <li (click)="selectlayout('5')"  [class.selected]="selected_layout == '5'">
+                        <div class="four_squ_layout layout_item">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div>Center Pane + Four Square Section</div>
+                    </li>
+                    <li (click)="selectlayout('6')"  [class.selected]="selected_layout == '6'">
+                        <div class="foot_layout layout_item">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div>Main + Footer</div>
+                    </li>
+                    <li (click)="selectlayout('7')"  [class.selected]="selected_layout == '7'">
+                        <div class="head_layout layout_item">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div>Main + Header</div>
+                    </li>
+                    <li (click)="selectlayout('8')"  [class.selected]="selected_layout == '8'">
+                        <div class="foot_head_layout layout_item">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div>Main + Header + Footer</div>
+                    </li>
+                    <li (click)="selectlayout('9')"  [class.selected]="selected_layout == '9'">
+                        <div class="hor_main_layout layout_item">
+                            <span></span>
+                        </div>
+                        <div>Horizontal Main</div>
+                    </li>
+                    <li (click)="selectlayout('10')"  [class.selected]="selected_layout == '10'">
+                        <div class="split_ver_layout layout_item">
+                            <div>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div>Split Horizontal</div>
+                    </li>
+                    <li (click)="selectlayout('11')" [class.selected]="selected_layout == '11'">
+                      <div class="split_hor_triple_layout layout_item">
+                        <div>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </div>
+                      </div>
+                      <div>Horizontal: Triple</div>
+                    </li>
+                    <li (click)="selectlayout('12')" [class.selected]="selected_layout == '12'">
+                      <div class="split_hor_four_layout layout_item">
+                        <div>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </div>
+                      </div>
+                      <div>Horizontal: Four Pane</div>
+                    </li>
+                    <li (click)="selectlayout('13')" [class.selected]="selected_layout == '13'">
+                      <div class="split_hor_centfour_layout layout_item">
+                        <div>
+                          <span></span>
+                          <span></span>
+                        </div>
+                        <div>
+                            <span></span>
+                        </div>
+                       <div>
+                          <span></span>
+                          <span></span>
+                       </div>
+
+                      </div>
+                      <div>Horizontal: Center Pane + Four Square</div>
+                    </li>
+                    <li (click)="selectlayout('14')" [class.selected]="selected_layout == '14'">
+                      <div class="split_hor_header_layout layout_item">
+                        <div>
+                          <span></span>
+                          <span></span>
+                        </div>
+                      </div>
+                      <div>Horizontal: Main + Header</div>
+                    </li>
+                    <li (click)="selectlayout('15')" [class.selected]="selected_layout == '15'">
+                      <div class="split_hor_footer_layout layout_item">
+                        <div>
+                          <span></span>
+                          <span></span>
+                        </div>
+                      </div>
+                      <div>Horizontal: Main + Footer</div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+        <!-- PAGE WRAP END -->
+
+      </app-wrapper>
+    </div>
+  </section>

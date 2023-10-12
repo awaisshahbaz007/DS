@@ -1,0 +1,113 @@
+.inner_directory{
+    .folder_directory{
+        padding: 0px 0px 15px;
+        h2{
+            display: flex;
+            align-items: center;
+            margin-left: -38px;
+            margin-bottom: 23px;
+            font-size: 24px;
+            img{
+                margin-right: 28px;
+            }
+        }
+        ul{
+            background: #ECECEC;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 14px 28px;
+            width: auto;
+            float: left;
+            li{
+                a{
+                    font-size: 20px !important;
+                    color: #999999;
+                    font-weight: 400;
+                    display: flex;
+                    align-items: center;
+                    img{
+                        margin-right: 9px;
+                    }
+                }
+                padding-right: 28px;
+                padding-left: 28px;
+                background: url('/assets/images/datatable/right_arrow_02.png') right center no-repeat;
+                &:last-child{
+                    padding-right: 0px;
+                    background: none;
+                }
+                &:first-child{
+                    padding-left: 0px;
+                }
+            }
+        }
+    }
+    .upload_folder_data{
+        height: calc(100vh - 272px);
+        float: left;
+        width: 100%;
+        app-file-upload{
+            height: 100%;
+            display: block;
+        }
+    }
+}
+@media(max-width:992px){
+    .inner_directory {
+        .folder_directory{
+          ul{
+            padding: 12px 25px;
+            flex-wrap:wrap;
+            li{
+              a{
+                font-size: 16px !important;
+                img{
+                  margin-right: 8px;
+                  max-width: 25px;
+                }
+              }
+              padding-right: 20px;
+              padding-left: 15px;
+              &:last-child{
+                  padding-right: 0px;
+              }
+              &:first-child{
+                  padding-left: 0px;
+              }
+            }
+          }
+        }
+      }
+}
+@media(max-width:576px) {
+  .inner_directory {
+    .folder_directory {
+      ul {
+        padding: 12px 15px;
+        flex-wrap: wrap;
+        li {
+          a {
+            font-size: 13px !important;
+            img {
+              margin-right: 5px;
+              max-width: 17px;
+            }
+          }
+
+          padding-right: 15px;
+          padding-left: 15px;
+          background-size: 7px !important;
+
+          &:last-child {
+            padding-right: 0px;
+          }
+
+          &:first-child {
+            padding-left: 0px;
+          }
+        }
+      }
+    }
+  }
+}

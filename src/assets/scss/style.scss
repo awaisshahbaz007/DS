@@ -1,0 +1,66 @@
+
+/*                 [1. Common ]                   			*/
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+@import "~perfect-scrollbar/css/perfect-scrollbar.css";
+@import "common/_variables";
+@import "common/_mixins";
+@import "common/_customanimate.scss";
+@import "common/_general.scss";
+@import "common/_demo.scss";
+@import "common/_helpers.scss";
+@import "common/_media.scss";
+@import "common/_animation.scss";
+@import "common/_rtl.scss";
+
+/*                 [2. Fonts]                   				*/
+// @import "fonts/_material.scss";
+@import "fonts/fontawesome/fontawesome.scss";
+@import "fonts/fontawesome/regular.scss";
+@import "fonts/fontawesome/solid.scss";
+@import "fonts/fontawesome/brands.scss";
+
+/*                 [3. Components ]                   		*/
+@import "components/_breadcrumbs.scss";
+@import "components/_checkboxradio.scss";
+@import "components/_feed.scss";
+@import "components/_formcomponents.scss";
+@import "components/_infobox.scss";
+@import "components/_inputformgroup.scss";
+@import "components/_labels.scss";
+@import "components/_leftsidebaroverlay.scss";
+@import "components/_navbar";
+@import "components/_navtabs.scss";
+@import "components/_noticeboard.scss";
+@import "components/_rightsidebar.scss";
+@import "components/_searchbar.scss";
+@import "components/_switch.scss";
+@import "components/_thumbnails.scss";
+@import "components/_settingSidebar.scss";
+
+
+
+/*                 [5. Pages ]                   				*/
+@import "pages/_auth.scss";
+
+/*                 [6. Pugins ]                   				*/
+@import "plugins/_tables.scss";
+
+/*                 [7. UI ]                   */
+@import "ui/_buttons.scss";
+@import "ui/_card.scss";
+@import "ui/_modals.scss";
+@import "ui/_pageloader.scss";
+@import "ui/_pagination.scss";
+@import "ui/_preloaders.scss";
+@import "ui/_progressbars.scss";
+
+/*                 [8. Browser ]                   			*/
+
+@font-face {
+    font-family: 'pop';
+    src: url('../../assets/fonts/poppins/poppins-v5-latin-regular.woff') format('woff'),
+         url('../../assets/fonts/poppins/poppins-v5-latin-regular.woff2') format('woff2');
+    /* Add other font-face properties if needed, such as font-weight or font-style */
+  }

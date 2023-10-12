@@ -1,0 +1,329 @@
+.auth-container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  .auth-main {
+    height: 100%;
+    width: 100%;
+    margin: 0rem !important;
+    padding: 1.6rem;
+    min-height: 100vh;
+  }
+}
+.coursel_border{
+  border-radius: 1.6rem;
+    overflow: hidden;
+}
+.carosel_logo{
+  margin-left: -0.6rem;
+  // position: absolute;
+  width: 10.7rem;
+}
+.cookies{
+  font-size: 1rem;
+  color: #292f36 !important;
+  max-width: 100%;
+  text-align: center;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.outer_de{
+  // margin-top: -3.5rem;
+  margin-top: 1.5rem;
+}
+.policy{
+  font-size: 1rem;
+    color: #292f36 !important;
+    max-width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+.left-img {
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.1rem 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.left-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 34.2rem;
+  width: 100%;
+  text-align: center;
+
+  h1 {
+    color: #fff;
+  }
+  p {
+    color: #fff;
+  }
+}
+.outer_for_auth{
+  padding-left: 0rem;
+  padding-right: 1.4rem;
+}
+
+@media only screen and (max-width: 992px) {
+  .d-xs-block{
+    display: none !important;
+  }
+  .outer_for_auth{
+    padding-left:0rem !important ;
+    padding-right:0rem !important;
+  }
+.width_100{
+  width: 100% !important;
+}
+  
+  .floating_btn{
+    display: none;
+
+  }
+  .carosel_logo {
+    margin-left: -0.9rem !important;
+}
+}
+.floating_btn{
+  
+  position: fixed !important;
+  z-index: 1;
+  right: 3.2rem;
+  top: 3.14rem;
+    .text{
+      padding: 0rem 0.7rem !important;
+    }
+}
+.auth-form-section {
+  background-color: #fff;
+}
+.auth-form-btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 3.6rem;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  button {
+    width: 100%;
+  }
+}
+@media (min-width: 1368px) {
+  .form-section {
+    padding: 0rem 13.6rem
+  }
+
+}
+.form-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.flex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.g-logo{
+  width: 1.4rem;
+}
+.g-text{
+  color: var(--primary-text-color);
+  margin-left: 0.7rem;
+}
+.btn_clr{
+  background-color: var(--primary-btn-color) ;
+  color:  var(--primary-btn-text-color) !important;
+  // width: 45px !important;
+  // height: 45px !important;
+}
+.forget_iocn{
+  outline: none !important;
+    font-size: 1rem !important;
+    text-decoration: none;
+    color:var(--primary-text-color) !important;
+    font-weight: 600 !important;
+    text-align: right;
+}
+.fget_lay{
+  justify-content: flex-end !important;
+  text-decoration: underline !important;
+}
+.auth-signup-text {
+
+  font-size: 1.07rem;
+    color: #74787c;
+    padding-bottom: 0.6rem;
+    width: 29.2rem;
+    max-width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+.relative{
+  position: relative;
+}
+a:hover{
+  color: black;
+}
+.welcome_details{
+  font-size: 1rem;
+  color: var(--primary-text-color) !important;
+  padding-bottom: 0.7rem;
+  text-align: center;
+  font-weight: 600;
+}
+.mt__22{
+  margin-top: 22px;
+}
+.sign-up-link {
+  color: var(--primary-text-color);
+  font-size: 1.1rem !important;
+  margin:0rem 0.7rem;
+}
+.auth-wrapper {
+  width: 25rem;
+  max-width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.login-title {
+  margin-bottom: 1.4rem;
+}
+.social-login-title {
+  font-size: 0.9rem;
+  color: var(--primary-text-color);
+  display: flex;
+  margin: 2.5rem 0rem;
+
+  &::before,
+  &::after {
+    content: "";
+    background-image: linear-gradient(#bbb8b8, #f3f3f3);
+    flex-grow: 1;
+    background-size: calc(100% - 20px) 1px;
+    background-repeat: no-repeat;
+  }
+
+  &::before {
+    background-position: center left;
+  }
+
+  &::after {
+    background-position: center right;
+  }
+}
+.welcome-msg {
+  font-weight: 500;
+    text-align: center;
+    font-size: 2.5rem;
+}
+.social-icon {
+  text-align: center;
+  li a {
+    color: #3c4858;
+    border: 1px solid #3c4858;
+    display: inline-block;
+    height: 2.9rem;
+    width: 2.9rem;
+    line-height: 2.9rem;
+    text-align: center;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    position: relative;
+    &:hover {
+      background-color: #2f55d4;
+      border-color: #2f55d4 !important;
+      color: #ffffff !important;
+    }
+  }
+}
+.sm-icon {
+  height: 1.1rem !important;
+  width: 1.1rem !important;
+}
+.show-pwd-icon {
+  color: #000000;
+}
+.auth-locked {
+  font-size: 60px;
+  color: #333;
+  width: 120px;
+  height: 120px;
+  background-color: transparent;
+  margin: 0 auto;
+  img {
+    width: 100px;
+    border-radius: 50%;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  }
+}
+.auth-locked-title {
+  font-size: 2.1rem;
+  font-family: Poppins, sans-serif;
+  color: #403866;
+  line-height: 1.2;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+.error-header {
+  font-size: 5.8rem;
+  line-height: 1.2;
+  color: #403866;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  display: block;
+  font-weight: 700;
+}
+.error-subheader {
+  font-size: 1.2rem;
+  color: #403866;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  display: block;
+  font-weight: 700;
+}
+.error-subheader2 {
+  font-size: 0.8rem;
+  color: #919192;
+  text-align: center;
+  width: 100%;
+  display: block;
+  font-weight: 500;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.auth-spinner:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-top: -0.7rem;
+  margin-left: -0.7rem;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner 0.8s linear infinite;
+}

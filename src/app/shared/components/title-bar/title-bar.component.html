@@ -1,0 +1,16 @@
+<div class="materialTableHeader">
+    <div class="my-div">
+        <h2>
+            <strong>{{data.title}}</strong>
+        </h2>
+        <div class="popup_button" [hidden]="!data.button_name">
+            <app-file-upload *ngIf="isContentModuel" (upload_file_status)="receiveUploadFileStatus($event)"></app-file-upload>
+            <app-button [data]="{
+              ButtonLabel: data.button_name,
+              buttonDisabled: 'false',
+              type: 'primary'
+            }" (click)="onClick()">
+            </app-button>
+        </div>
+    </div>
+</div>

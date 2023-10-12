@@ -1,0 +1,91 @@
+<section class="content module_wrap">
+    <div class="content-block">
+        <app-wrapper>
+
+            <!-- PAGE WRAP -->
+            <div class="page_wrap">
+
+                <!-- HEADER -->
+                <div class="buttons_with_title">
+                    <app-title-bar [data]="{title: 'Schedules'}"></app-title-bar>
+                    <div class="buttonsright">
+                        <app-button [data]="{
+                                      ButtonLabel: showFilters ? 'Hide Filter' : 'Show Filter',
+                                      buttonDisabled: true,
+                                      type: 'bg_color'
+                                  }" (click)="toggleFilterVisibility()" class="showfilterbtn">
+                        </app-button>
+                      <app-button [data]="{
+                            ButtonLabel: 'View calendar',
+                            buttonDisabled: true,
+                            type: 'outline'
+                        }" (click)="navigateToSchedule()">
+                      </app-button>
+
+                    </div>
+                </div>
+
+
+                <!-- HEADER END -->
+                <div class="datatable_filters form" *ngIf="showFilters" [@slideInOut]>
+                    <div class="input">
+                        <label for="">Start Date</label>
+                        <input type="date" placeholder="From Date" value="" (change)="onFromDateChange($event)" #startDateInput />
+                    </div>
+                    <div class="input">
+                        <label for="">End Date</label>
+                        <input type="date" placeholder="To Date" value="" (change)="onToDateChange($event)" #endDateInput/>
+                    </div>
+                    <div class="input">
+                        <label for="">Select Screen</label>
+                        <select id="screenSelect" multiple #screenSelect>
+                            <option *ngFor="let screenlist_item of screenlist_dropdown" [value]="screenlist_item.id">{{
+                                screenlist_item.name }}</option>
+                        </select>
+                    </div>
+                    <div class="input">
+                        <label for="">Select Playlist</label>
+                        <select id="playlistSelect" multiple #playlistSelect>
+                            <option *ngFor="let playlist_item of playlist_dropdown" [value]="playlist_item.id">{{
+                                playlist_item.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="input2">
+                        <app-button [data]="{
+                            ButtonLabel: 'Submit',
+                            buttonDisabled: true,
+                            type: 'bg_color'
+                        }" (click)="onSearchBtnClick()">
+                        </app-button>
+                    </div>
+                    <div class="clearall_" *ngIf="showClearButton">
+                      <app-button [data]="{
+                            ButtonLabel: 'Clear All Filter',
+                            buttonDisabled: false,
+                            type: 'outline'
+                        }" (click)="onClearAllClick()">
+                      </app-button>
+                    </div>
+                </div>
+
+                <!-- CUSTOM DATA TABLE -->
+                <div class="custom_datatable">
+
+                    <app-table [data]="datatableRecord" [showCheckboxes]="true" [showmainAction]="true"
+                        [columns]="datatableColumns" [actions]="datatableActions" [showTableActions]="false"
+                        [checkAllDropDownAction]="check_all_drop_down_actions"
+                        (send_action_type)="receiveActionType($event)"
+                        (datatable_operation)="receiveDatatableOperation($event)"></app-table>
+
+                    <app-paginator [totalItems]="pagination.totalItems" [pageSize]="pagination.pageSize"
+                        [pageSizeOptions]="pagination.pageSizeOptions" (pageChange)="pageChangeEvent($event)">
+                    </app-paginator>
+
+                </div>
+            </div>
+            <!-- PAGE WRAP END -->
+
+        </app-wrapper>
+    </div>
+</section>

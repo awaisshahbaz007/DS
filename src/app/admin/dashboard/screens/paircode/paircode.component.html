@@ -1,0 +1,28 @@
+<section class="content module_wrap">
+    <div class="content-block">
+        <div class="page_wrap">
+
+            <div class="pair_code_wrap">
+                <div class="pairCode_container">
+
+                    <div class="close_popup">
+                        <a routerLink="/admin/dashboard/screens">
+                            <img src="assets/images/playlist/cross_icon.png">
+                        </a>
+                    </div>
+
+                    <div class="pair_code_popup">
+                        <h4>Enter the 6-character pairing code</h4>
+                        <div class="form_control">
+                            <input type="text" name="pairing_code" maxlength="6" id="pairing_code" (input)="checkPairingCode()">
+                        </div>
+                        <p>If you don’t have a screen, <a href="#" target="_blank">open the web player!</a></p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

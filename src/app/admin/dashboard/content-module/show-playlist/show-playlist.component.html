@@ -1,0 +1,7 @@
+<ul class="popup_playlist">
+    <ng-container *ngFor="let playlist of all_playlist">
+        <li>
+            <a (click)="moveToEditPlayList(playlist.id)">{{ playlist.name }}</a>
+        </li>
+    </ng-container>
+</ul>

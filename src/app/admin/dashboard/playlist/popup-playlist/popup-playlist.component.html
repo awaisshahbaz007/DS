@@ -1,0 +1,20 @@
+<table class="custom-tableplaylist">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Last Modified</th>
+            <th>Duration</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let playlist of datatableRecord" (click)="selectPlaylist(playlist)">
+            <td>
+                <mat-radio-button [checked]="playlist === selectedPlaylist"  (click)="selectPlaylist(playlist)"></mat-radio-button>
+            </td>
+            <td class="playistname">{{ playlist.name }}</td>
+            <td class="dateplaylist">{{ playlist.updatedDate }}</td>
+            <td class="durationplaylist">{{ playlist.duration }}</td>
+        </tr>
+    </tbody>
+</table>

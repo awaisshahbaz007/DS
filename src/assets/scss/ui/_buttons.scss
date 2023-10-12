@@ -1,0 +1,29 @@
+﻿/*
+ *  Document   : _buttons.scss
+ *  Author     : RedStar Template
+ *  Description: This scss file for button style classes
+ */
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+@media(max-width:568px) {
+
+  .phen_bnt{
+    position: fixed !important;
+      z-index: 1000;
+      right: 26px !important;
+      top: 15px !important;
+  }
+  }
+
+.btn:focus,
+.btn.focus {
+  box-shadow: none;
+}
+
+.btn-space {
+  margin-right: 10px !important;
+}
+.min_button{
+  min-width: 82px !important;}

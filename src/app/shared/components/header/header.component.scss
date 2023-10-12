@@ -1,0 +1,134 @@
+.search_box_wrap{
+    .search_box{
+        margin: 0 auto;
+        width: calc(100% - 375px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.right_bar{
+    display: flex;
+    align-items: center;
+    .tooltip-wrap{
+        margin-left: 18px;
+    }
+    .create_playlist_btn {
+        margin-right: 129px;
+        .custom_button.bg_color{
+            background: #000;
+            color: #fff;
+        }
+    }
+    &.btn_right{
+        margin-left: auto;
+        margin-top: 14px;
+        margin-bottom: 14px;
+        .button_wrap {
+            display: flex;
+            align-items: center;
+            app-button:nth-child(2){
+                margin-left: 32px;
+            }
+            .close_layout{
+                margin-left: 70px;
+                img{
+                    width: 17px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:1600px){
+    .right_bar {
+        .create_playlist_btn{
+            margin-right: 0px;
+        }
+    }
+}
+@media(max-width:1500px){
+    .navbar {
+        .search_box_wrap{
+            width: calc(100% - 320px);
+        }
+    }
+    .right_bar {
+        .create_playlist_btn{
+            margin-right: 0px;
+        }
+    }
+}
+@media(max-width:1200px){
+    .navbar {
+        .search_box_wrap{
+            .search_box{
+                width: calc(100% - 265px);
+            }
+        }
+    }
+}
+@media(max-width: 992px){
+    .navbar {
+        .search_box_wrap{
+        width: calc(100% - 105px);
+        }
+    }
+}
+@media(max-width: 768px){
+    .navbar {
+      .navbar-collapse.collapse{
+        display: flex !important;
+        justify-content: space-between;
+      }
+        .search_box_wrap{
+            padding-bottom: 0;
+            width: calc(100% - 50px);
+            .search_box{
+                // position: absolute;
+                // bottom: 8px;
+                // right: 0px;
+                // border-top: 1px solid #f4f1f1;
+                width: 100% ;
+                // padding: 8px 20px 0px 24px;
+            }
+            app-search {
+                margin-right: 8px;
+            }
+            &.no_searchbox{
+                padding-bottom: 0px;
+            }
+        }
+    }
+    .right_bar{
+          .tooltip-wrap {
+            margin-left: 0;
+            display: none;
+          }
+
+        &.btn_right {
+            .button_wrap {
+                .close_layout{
+                    margin-left: 22px;
+                }
+            }
+        }
+    }
+}
+@media (max-width:576px) {
+  .navbar {
+      .search_box_wrap {
+        .search_box {
+          // padding: 8px 15px 0px 15px;
+        }
+
+        app-search {
+          margin-right: 10px;
+        }
+
+        &.no_searchbox {
+          padding-bottom: 0px;
+        }
+      }
+    }
+}

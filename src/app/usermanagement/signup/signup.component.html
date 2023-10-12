@@ -1,0 +1,148 @@
+<div class="auth-container">
+  <div class="row auth-main">
+    <div class="col-sm-6 auth-form-section relative width_100">
+      <div class="flex">
+        <img
+          class="carosel_logo"
+          src="assets/images/image-gallery/logo.png"
+          alt=""
+        />
+        <div class="hide_dis">
+          <app-button
+          [data]="{
+            ButtonLabel: 'Sign up',
+            buttonDisabled: false,
+            type: 'primary'
+          }"
+          (click)="onClick()"
+        ></app-button>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="auth-wrapper">
+          <h2 class="welcome-msg">Create an account</h2>
+          <p class="welcome_details text-muted">
+            Let's get started with your 14 days free trail.
+          </p>
+          <div class="d-flex justify-content-between lbl-alert"></div>
+          <form
+            class="validate-form"
+            [formGroup]="authForm"
+          >
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <mat-form-field class="example-full-width">
+                  <mat-label>First Name</mat-label>
+                  <input matInput formControlName="firstName" required />
+                  <mat-error *ngIf="authForm.get('firstName').hasError('required')">
+                    First Name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Last Name</mat-label>
+                  <input matInput formControlName="lastName" required />
+                  <mat-error *ngIf="authForm.get('lastName').hasError('required')">
+                    Last Name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12col-lg-12 col-md-12 col-sm-12">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email" required />
+                  <mat-error
+                    *ngIf="
+                      authForm.get('email').hasError('required') ||
+                      authForm.get('email').touched
+                    "
+                  >
+                    Please enter a valid email address
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12col-lg-12 col-md-12 col-sm-12">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Password</mat-label>
+                  <input
+                    matInput
+                    formControlName="password"
+                    [type]="hide ? 'password' : 'text'"
+                    required
+                  />
+                  <mat-icon matSuffix (click)="hide = !hide">
+                    {{ hide ? "visibility_off" : "visibility" }}</mat-icon
+                  >
+                  <mat-error
+                    *ngIf="authForm.get('password').hasError('required')"
+                  >
+                    Password is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="container-auth-form-btn mt__22">
+              <app-button
+                [data]="{
+                  ButtonLabel: 'Register',
+                  buttonDisabled: authForm.invalid,
+                  type: 'primary'
+                }"
+                (onSubmitValue)="onSubmit()"
+              ></app-button>
+            </div>
+          </form>
+          <h6 class="social-login-title">OR</h6>
+          <app-button
+            [data]="{
+              ButtonLabel: 'Sign in',
+              buttonDisabled: authForm.valid,
+              type: 'google_login'
+            }"
+          ></app-button>
+          <div class="mt__22">
+            <p class="auth-signup-text text-muted">
+              Already Registered?<a
+                routerLink="/usermanagement/signin"
+                class="sign-up-link"
+                >Login
+              </a>
+            </p>
+            <div class="outer_de">
+              <div class="policy">
+                By registering,you confirm that you've read and accepted our
+              </div>
+              <div class="policy">
+                <span class="cookies"> Terms of Use</span>
+                <span class="policy"> and </span>
+                <span class="cookies"> Privacy Policy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-sm-6 px-0  d-xs-block">
+      <app-carosel [imageArray]="event_list"></app-carosel>
+    </div>
+  </div>
+</div>
+
+<div class="floating_btn">
+  <app-button
+    [data]="{
+      ButtonLabel: 'Log in',
+      buttonDisabled: false,
+      type: 'primary'
+    }"
+    (click)="onClick()"
+  ></app-button>
+</div>

@@ -1,0 +1,27 @@
+<form [formGroup]="group">
+  <div class="form-group " *ngFor="let control of controls">
+    <div class="flex_ends">
+      <label class="wd_30 lable">{{ control.label }}</label>
+      <div class="wd_70">
+        <div [ngSwitch]="control.type">
+          <input *ngSwitchCase="'input'" [type]="control.input_type" class="form-control  "
+            [formControlName]="control.name" [placeholder]="control.placeholder" (input)="onInputFocus()">
+          <div class="select" *ngSwitchCase="'select'">
+            <select class=" wd_70 " [formControlName]="control.name" [placeholder]="control.placeholder"
+              [attr.placeholder]="control.placeholder" (change)="onInputFocus()">
+              <!-- <option value="" class="select_place" disabled [selected]="true">{{ control.placeholder }}</option> -->
+              <option *ngFor="let option of control.options" [value]="option.value">{{ option.label }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="error-message text-danger"
+          *ngIf="group.get(control.name)?.invalid && (group.get(control.name)?.dirty || group.get(control.name)?.touched)">
+          <div class="erroe" *ngIf="group.get(control.name)?.errors?.required">This field is required.</div>
+          <div class="erroe" *ngIf="group.get(control.name)?.errors?.email">Please enter a valid email address.</div>
+          <div class="erroe" *ngIf="group.get(control.name)?.errors?.minlength">Password must be at least {{
+            group.get(control.name)?.errors?.minlength.requiredLength }} characters long.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
